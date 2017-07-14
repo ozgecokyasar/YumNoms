@@ -1,0 +1,103 @@
+
+
+button {
+  border: none;
+  background-color: white;
+}
+
+button .fa {
+  font-size: 20px;
+}
+
+button .fa:hover {
+color: red;
+}
+
+.post img {
+  padding: 0 20px 0 20px;
+  display: block;
+  margin: auto;
+
+}
+
+.buttons {
+  padding: 0 20px 0 20px;
+}
+
+.buttons .left {
+  float:left
+}
+
+.buttons .right {
+  float:right
+}
+
+.summary {
+  padding: 0 20px 0 20px;
+}
+
+
+footer .fa {
+  font-size: 30px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+footer .fa:hover {
+  color: red;
+}
+
+footer .foot {
+    margin: auto;
+}
+
+footer {
+  background-color: lightgrey;
+  display: flex;
+  margin-top: 40px;
+}
+
+.containter {
+  display: flex;
+}
+
+.container .row {
+  margin: auto;
+
+}
+
+.most-liked {
+  padding: 0 20px 0 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .most-liked {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
+
+.summary-long {
+  margin: 20px 140px 20px 140px;
+}
+
+@media screen and (max-width: 600px) {
+  .summary-long {
+    margin: 10px 10px 10px 10px ;
+  }
+}
+
+.right button {
+  float: right;
+
+}
+
+.right p {
+  float: right
+
+}

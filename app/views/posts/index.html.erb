@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="post">
+          <%= image_tag("sri-lankan.jpg", width: "100%") %>
+          </div>
+
+          <div class="buttons">
+            <div class="left">
+              <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="left">
+              <p>LIKE COUNT</p>
+            </div>
+            <div class="right">
+              <button type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <br>
+          <div class="summary">
+            <h3><%= link_to post.title, post_path(post) %> </h3>
+            <p><%= post.body %></p>
+            <a href="#">Post author name</a>
+            <p><%= post.created_at %></p>
+          </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

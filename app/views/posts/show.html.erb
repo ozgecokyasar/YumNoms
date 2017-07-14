@@ -1,0 +1,47 @@
+
+
+<div class="show-post">
+<h1><%= @post.title %></h1>
+<%= image_tag("sri-lankan.jpg", width: "100%") %>
+</div>
+<div class="summary-long">
+  <h4><%= @post.body %></h4>
+  <br>
+  <div>
+      <p style="float: right"><%= @post.created_at %></p>
+      <a href="#"><p style="float:left">Post category</p></a>
+  </div>
+<hr>
+  <div class="buttons">
+    <div class="right">
+      <button type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+      </button>
+      <p>LIKE COUNT</p>
+      <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+
+
+<h2>Comments:</h2>
+  <%= form_for([@post, Comment.new]) do |f| %>
+    <div>
+      <%=  f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+      <%= f.submit %>
+  <% end %>
+
+
+<ul>
+  <% @post.comments.each do |comment| %>
+  <li>
+    <p><%= comment.body %> </p>
+    <p>Created at: <%= comment.created_at.to_formatted_s(:long) %></p>
+  </li>
+<hr>
+  <% end %>
+</ul>
