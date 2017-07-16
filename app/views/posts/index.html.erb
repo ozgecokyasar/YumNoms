@@ -24,10 +24,9 @@
 
           <br>
           <div class="summary">
-            <h3><%= link_to post.title, post_path(post) %> </h3>
+            <h4><%= link_to post.title, post_path(post) %> </h4>
             <p><%= post.body %></p>
-            <a href="#">Post author name</a>
-            <p><%= post.created_at %></p>
+            <p><strong>Created by: </strong><%= post.user&.first_name %> <strong>On: </strong><%= post.created_at %></p>
           </div>
           </div>
       </div>

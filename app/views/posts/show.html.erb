@@ -4,12 +4,23 @@
 <h1><%= @post.title %></h1>
 <%= image_tag("sri-lankan.jpg", width: "100%") %>
 </div>
+
+
 <div class="summary-long">
   <h4><%= @post.body %></h4>
   <br>
   <div>
       <p style="float: right"><%= @post.created_at %></p>
       <a href="#"><p style="float:left">Post category</p></a>
+      <p>Created by: <%= @post.user&.first_name %></p>
+
+<% if user_signed_in? || can?(:manage, @product) %>
+        <%= link_to "Edit", edit_post_path(@post) %>
+        <%= link_to "Delete", post_path(@post), method: :delete %>
+<% end %>
+
+
+
   </div>
 <hr>
   <div class="buttons">
@@ -40,7 +51,10 @@
   <% @post.comments.each do |comment| %>
   <li>
     <p><%= comment.body %> </p>
-    <p>Created at: <%= comment.created_at.to_formatted_s(:long) %></p>
+    <p><strong>Created at:</strong> <%= comment.created_at.to_formatted_s(:long) %> <strong>By:</strong> <%= comment.user.first_name %></p>
+    <% if user_signed_in? || can?(:destroy, comment) %>
+    <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?"} %>
+    <% end %>
   </li>
 <hr>
   <% end %>
