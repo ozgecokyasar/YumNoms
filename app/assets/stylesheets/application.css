@@ -1,8 +1,4 @@
 
-.container  {
-  padding: 70px;
-}
-
 
 button {
   border: none;
@@ -58,6 +54,9 @@ footer {
   .summary-long {
     margin: 10px 10px 10px 10px ;
   }
+  .posts {
+    width: 100%;
+  }
 }
 
 .right button {
@@ -69,5 +68,29 @@ footer {
 }
 
 .hello {
-  padding-top: 15px;
+  padding-top: 16px;
+  padding-left: 12px;
+}
+
+.comment-form {
+  flex: 1;
+}
+
+.post-show {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+.most-liked {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
+
+.form {
+  padding: 40px;
 }

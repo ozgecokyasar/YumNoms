@@ -1,21 +1,30 @@
-<h1>New post!</h1>
+
 
 <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
-
-<%= form_for @post do |f| %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="form">
+  <h1>Create a new post</h1>
+  <%= form_for @post do |f| %>
+  <div>
+    <div>
+        <%= f.label :title %>
+    </div>
+    <%= f.text_field :title, cols: "60" %>
+  </div>
+  <div>
+    <div>
+    <%= f.label :body %>
+    </div>
+    <%= f.text_area :body,cols: "60", rows: "5"   %>
+  </div>
+  <div>
+    <div>
+    <%= f.label :category %>
+    </div>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </div>
+   <br>
+  <div>
+    <%= f.submit %>
+  </div>
+  <% end %>
 </div>
-<div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.label :category %>
-  <%= f.collection_select :category_id, Category.all, :id, :name %>
-</div>
-<div>
-  <%= f.submit %>
-</div>
-<% end %>
