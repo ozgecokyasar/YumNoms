@@ -15,7 +15,8 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @post = Post.find params[:post_id]
+
+    # @post = Post.find params[:post_id]
     comment = Comment.find params[:id]
     if can?(:destroy, comment)
       comment.destroy

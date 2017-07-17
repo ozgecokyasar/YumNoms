@@ -2,6 +2,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :manage, Post do |post|
+      post.user == user
+    end
     # if user.is_admin?
     #   can :manage, :all
     # end

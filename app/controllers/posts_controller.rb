@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  # before_action :find_post, only: [:edit, :destroy, :show, :update]
-  # before_action :authenticate_user!, except: [:index, :show]
-  # before_action :authorize_user!, only: [:edit, :destroy, :update]
+  before_action :find_post, only: [:edit, :destroy, :show, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user!, only: [:edit, :destroy, :update]
 
   def index
-    
+
     @posts = Post.order(created_at: :desc)
   end
 
@@ -35,24 +35,22 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find params[:id]
-    if @post.user != current_user
-      redirect_to root_path, alert: 'access denied'
-    end
+    redirect_to root_path, alert: "access denied" unless can? :edit, @post
   end
 
   def update
     @post = Post.find params[:id]
     # post_params = params.require(:post).permit(:title, :body)
-
+    redirect_to root_path, alert: "access denied" unless can? :update, @post
     if @post.update post_params
-      redirect_to post_path(@post)
+      redirect_to @post, notice: "post updated"
     else
       render :edit
     end
   end
 
   def destroy
-    @post = Post.find params[:id]
+    redirect_to root_path, alert: "access denied" unless can? :destroy, @post || current_user.is_admin?
     @post.destroy
     redirect_to posts_path, :notice => "your post has been deleted"
   end
