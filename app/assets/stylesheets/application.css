@@ -1,4 +1,8 @@
 
+.container  {
+  padding: 70px;
+}
+
 
 button {
   border: none;
@@ -13,15 +17,8 @@ button .fa:hover {
 color: red;
 }
 
-.post img {
-  padding: 0 20px 0 20px;
-  display: block;
-  margin: auto;
-
-}
-
-.buttons {
-  padding: 0 20px 0 20px;
+.posts {
+  margin-top: 40px;
 }
 
 .buttons .left {
@@ -31,11 +28,6 @@ color: red;
 .buttons .right {
   float:right
 }
-
-.summary {
-  padding: 0 20px 0 20px;
-}
-
 
 footer .fa {
   font-size: 30px;
@@ -57,30 +49,6 @@ footer {
   margin-top: 40px;
 }
 
-.containter {
-  display: flex;
-}
-
-.container .row {
-  margin: auto;
-
-}
-
-.most-liked {
-  padding: 0 20px 0 20px;
-}
-
-
-@media screen and (max-width: 600px) {
-  .most-liked {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-}
 
 .summary-long {
   margin: 20px 140px 20px 140px;
@@ -94,10 +62,12 @@ footer {
 
 .right button {
   float: right;
-
 }
 
 .right p {
   float: right
+}
 
+.hello {
+  padding-top: 15px;
 }

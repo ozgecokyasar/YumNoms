@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 before_action :authenticate_user!
+
   def create
     @post = Post.find params[:post_id]
     @comment = @post.comments.build(comment_params)
@@ -14,6 +15,7 @@ before_action :authenticate_user!
   end
 
   def destroy
+    @post = Post.find params[:post_id]
     comment = Comment.find params[:id]
     if can?(:destroy, comment)
       comment.destroy

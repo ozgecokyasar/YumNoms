@@ -1,9 +1,21 @@
 
 <div class="container">
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= image_tag("sri-lankan.jpg", width: "80%") %>
+    </div>
+    <div class="col-lg-4">
+      <h1>Most liked</h1>
+      <p>This is the description</p>
+      <p>Posted by: xxx, On: xxx</p>
+    </div>
+  </div>
+
   <div class="row">
     <% @posts.each do |post| %>
       <div>
-        <div class="col-lg-4 col-sm-12">
+        <div class="posts col-lg-4 col-sm-12">
           <div class="post">
           <%= image_tag("sri-lankan.jpg", width: "100%") %>
           </div>
@@ -12,9 +24,6 @@
             <div class="left">
               <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
               </button>
-            </div>
-            <div class="left">
-              <p>LIKE COUNT</p>
             </div>
             <div class="right">
               <button type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
@@ -25,6 +34,7 @@
           <br>
           <div class="summary">
             <h4><%= link_to post.title, post_path(post) %> </h4>
+
             <p><%= post.body %></p>
             <p><strong>Created by: </strong><%= post.user&.first_name %> <strong>On: </strong><%= post.created_at %></p>
           </div>

@@ -9,7 +9,7 @@ resources :users, only: [:new, :create]
 
 root "posts#index"
 # get 'posts/:id', to: 'posts#show'
-resources :posts do
+resources :posts  do
   resources :comments, only: [:create, :destroy]
 end
 

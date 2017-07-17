@@ -7,10 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Post.destroy_all
 Comment.destroy_all
+Category.destroy_all
+
+categories = ['Ruby', 'Javascript', 'Wordpress', 'Design', 'Front-end']
+
+categories.each do |category|
+  Category.create(name: category)
+end
 
 30.times do
-  Post.create title: Faker::ChuckNorris.fact,
-              body: Faker::Hacker.say_something_smart
+  category = Category.all.sample
+
+  Post.create (title: Faker::ChuckNorris.fact,
+                  body: Faker::Hacker.say_something_smart)
 end
 
 posts = Post.all

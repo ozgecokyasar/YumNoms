@@ -1,20 +1,24 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit, :destroy, :show, :update]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorize_user!, only: [:edit, :destroy, :update]
+  # before_action :find_post, only: [:edit, :destroy, :show, :update]
+  # before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authorize_user!, only: [:edit, :destroy, :update]
 
   def index
+    
     @posts = Post.order(created_at: :desc)
   end
 
   def show
-    # @post = Post.find params[:id]
+    @post = Post.find params[:id]
     @comments = Comment.new
     @comments = @post.comments.order(created_at: :desc)
+
+
   end
 
   def new
     @post = Post.new
+
   end
 
   def create
@@ -30,14 +34,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # @post = Post.find params[:id]
-    # if @post.user != current_user
-    #   redirect_to root_path, alert: 'access denied'
-    # end
+    @post = Post.find params[:id]
+    if @post.user != current_user
+      redirect_to root_path, alert: 'access denied'
+    end
   end
 
   def update
-    # @post = Post.find params[:id]
+    @post = Post.find params[:id]
     # post_params = params.require(:post).permit(:title, :body)
 
     if @post.update post_params
@@ -48,15 +52,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # @post = Post.find params[:id]
+    @post = Post.find params[:id]
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, :notice => "your post has been deleted"
   end
 
 private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :category_id)
   end
 
   def authorize_user!
