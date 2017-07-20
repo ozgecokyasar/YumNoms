@@ -21,7 +21,7 @@
     <% if user_signed_in? && can?(:manage, @post) %>
             <%= link_to "Edit", edit_post_path(@post) %> |
             <%= link_to "Delete", post_path(@post), method: :delete %> |
-            <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
+    
             <button style="float: right" type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
     <% end %>
   </div>

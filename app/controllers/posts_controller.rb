@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   before_action :authorize_user!, only: [:edit, :destroy, :update]
 
   def index
-
     @posts = Post.order(created_at: :desc)
   end
 
@@ -12,6 +11,7 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     @comments = Comment.new
     @comments = @post.comments.order(created_at: :desc)
+
 
 
   end
