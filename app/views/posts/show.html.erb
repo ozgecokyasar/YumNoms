@@ -2,44 +2,31 @@
 
 <div class="show-post">
 <h1><%= @post.title %></h1>
-<%= image_tag("sri-lankan.jpg", width: "100%") %>
+<%= image_tag("placeholder.jpg", width: "100%") %>
 </div>
 
 
 <div class="summary-long">
+  <p style="float: right"><%= @post.created_at %></p>
   <h4><%= @post.body %></h4>
   <br>
-  <div>
-      <p style="float: right"><%= @post.created_at %></p>
-      <div>
-
-      </div>
+<div>
       <br>
       <div>
         <p>Created by: <%= @post.user&.first_name %></p>
+        <p>Category: <%= @post.category.name %></p>
       </div>
 
 
-<% if user_signed_in? && can?(:manage, @post) %>
-        <%= link_to "Edit", edit_post_path(@post) %> |
-        <%= link_to "Delete", post_path(@post), method: :delete %>
-<% end %>
-
-
-
+    <% if user_signed_in? && can?(:manage, @post) %>
+            <%= link_to "Edit", edit_post_path(@post) %> |
+            <%= link_to "Delete", post_path(@post), method: :delete %> |
+            <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
+            <button style="float: right" type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+    <% end %>
   </div>
 <hr>
-  <div class="buttons">
-    <div class="right">
-      <button type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
-      </button>
-      <p>LIKE COUNT</p>
-      <button type="button" name="like"><i class="fa fa-heart-o" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <br>
-  <hr>
+
 
 
 
