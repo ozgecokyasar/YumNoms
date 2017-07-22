@@ -17,3 +17,20 @@ Hello, please edit your information:
 
 <%= f.submit %>
 <% end %>
+
+<h1>Change password:</h1>
+
+<%= form_for @user do |f| %>
+<div>
+  <%= password_field_tag :current_password, params[:current_password], placeholder: "Current password" %>
+</div>
+<div>
+  <%= f.password_field :password, placeholder: "New password (optional)" %>
+</div>
+<div>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm new password" %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>

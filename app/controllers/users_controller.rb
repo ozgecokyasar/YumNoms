@@ -15,6 +15,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = User.find params[:id]
+    user = User.find_by_email(current_user.email).try(:authenticate, params[:current_password])
+    if user && @user.update_attributes(params[:user])
+      flash[:success] = "profile updated"
+      redirect_to root_path
+    else
+      flash.now[:error] = "incorrext current password"
+      render :edit
+    end
+  end
+
   def new
     @user = User.new
   end
