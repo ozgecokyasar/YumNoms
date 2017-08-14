@@ -13,6 +13,5 @@
 //= require jquery3
 //= require jquery_ujs
 //= require vendor/selectize.min
-//= require materialize
 //= require rails-ujs
 //= require_tree .

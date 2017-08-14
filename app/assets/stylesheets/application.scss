@@ -16,11 +16,11 @@
  *= require_self
  */
 
- @import "materialize/components/color";
-$primary-color: color("white", "teal") !default;
-$secondary-color: color("teal", "teal") !default;
-@import 'materialize';
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+//  @import "materialize/components/color";
+// $primary-color: color("white", "teal") !default;
+// $secondary-color: color("teal", "teal") !default;
+// @import 'materialize';
+// @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 * {
   font-family: 'Raleway', sans-serif;
