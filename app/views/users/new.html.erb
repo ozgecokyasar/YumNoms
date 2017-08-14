@@ -1,6 +1,5 @@
 <div class="newuser-container">
 <div class="new-user">
-  <h1>Sign up here</h1>
   <% if @user.errors.any? %>
   <ul>
     <% @user.errors.full_messages.each do |msg| %>
@@ -10,6 +9,8 @@
   <% end %>
 
   <%= form_for @user do |f| %>
+  <h4>Sign up here</h4>
+  <br>
   <div>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>

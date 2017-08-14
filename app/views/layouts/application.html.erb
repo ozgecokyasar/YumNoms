@@ -16,7 +16,7 @@
           <a href="#" class="brand-logo"></a>
           <ul class="right">
             <% if user_signed_in? %>
-              <li style="float: right"><p>Hello, <%= current_user.first_name%>!</p></li>
+              <li style="float: right"><p>Hello, <%= current_user.first_name %>!</p></li>
               <li style="float: right"><%= link_to "view places near me", posts_path %></li>
               <li style="float: right"><%=link_to 'create new post', new_post_path %></li>
               <li style="float: right"><%= link_to 'Log Out', sessions_path, method: :delete %></li>
@@ -34,15 +34,7 @@
 
     <%= yield %>
 <hr>
-    <footer style="display: flex">
-      <div class="social" style="margin: auto">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-facebook" aria-hidden="true"></i>
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-google-plus" aria-hidden="true"></i>
 
-      </div>
-    </footer>
   </body>
 
 </html>

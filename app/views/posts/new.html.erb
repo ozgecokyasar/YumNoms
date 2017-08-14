@@ -1,8 +1,8 @@
 <div class="newplace-container">
   <div class="new-place">
     <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
-    <div class="form">
-      <h1>Create a new post</h1>
+    <div style="margin-top: 100px;">
+      <h4>Create a new post</h4>
       <%= form_for @post do |f| %>
       <div>
         <div>
@@ -12,10 +12,22 @@
       </div>
       <div>
         <div>
-        <%= f.label :body %>
+        <%= f.label :body, "please enter the details of the deal" %>
         </div>
         <%= f.text_area :body,cols: "60", rows: "5"   %>
       </div>
+      <div>
+        <%= f.label :price %>
+      </div>
+      <%= f.text_field :price %>
+      <div>
+        <%= f.label :start_time, "Deal Start Time" %>
+      </div>
+      <%= f.time_field :start_time %>
+      <div>
+        <%= f.label :end_time, "Deal End Time"%>
+      </div>
+      <%= f.time_field :end_time %>
       <div>
         <div>
         <%= f.label :category %>

@@ -1,24 +1,48 @@
-<h1>Edit Post</h1>
 <div class="newplace-container">
   <div class="new-place">
-<h3 style="color:red"> <%= @post.errors.full_messages.join('. ')%></h3>
+    <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
+    <div style="margin-top: 100px;">
+      <h4>Edit post</h4>
+      <%= form_for @post do |f| %>
+      <div>
+        <div>
+            <%= f.label :title %>
+        </div>
+        <%= f.text_field :title, cols: "60" %>
+      </div>
+      <div>
+        <div>
+        <%= f.label :body, "please enter the details of the deal" %>
+        </div>
+        <%= f.text_area :body,cols: "60", rows: "5"   %>
+      </div>
+      <div>
+        <%= f.label :price %>
+      </div>
+      <%= f.text_field :price %>
+      <div>
+        <%= f.label :start_time, "Deal Start Time" %>
+      </div>
+      <%= f.time_field :start_time %>
+      <div>
+        <%= f.label :end_time, "Deal End Time"%>
+      </div>
+      <%= f.time_field :end_time %>
+      <div>
+        <div>
+        <%= f.label :category %>
+        </div>
+        <%= f.collection_select :category_id, Category.all, :id, :name, class: "browser-default" %>
+      </div>
+       <div>
+         <%= f.label :tag_list, "Tags, seperated by commas" %>
+         <%= f.text_field :tag_list %>
+       </div>
+      <div>
+        <%= submit_tag "Update",  class: 'waves-effect waves-light btn'%>
+      </div>
+      <% end %>
+    </div>
 
-<%= form_for @post do |f| %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
-<div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.label :tag_list, "tags, seperated by commas" %>
-  <%= f.text_field :tag_list %>
-</div>
-<div>
-  <%= submit_tag "save changes",  class: 'waves-effect waves-light btn'  %>
-</div>
-<% end %>
-</div>
+  </div>
 </div>
