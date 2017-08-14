@@ -9,14 +9,13 @@ before_action :authenticate_user!
     if @comment.save
       redirect_to post_path(@post)
     else
-      @comment = @post.comment.order(created_at: :desc)
+      @comments = @post.comments.order(create_at: :desc)
       render 'posts/show'
     end
   end
 
   def destroy
 
-  @post = Post.find params[:post_id]
     comment = Comment.find params[:id]
     if can?(:destroy, comment)
       comment.destroy
@@ -28,7 +27,7 @@ before_action :authenticate_user!
 
   private
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :rating)
   end
 
 

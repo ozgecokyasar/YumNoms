@@ -5,16 +5,20 @@ Rails.application.routes.draw do
   end
 
 
-resource :session, only: [:new, :create, :destroy]
-resources :users
+resources :sessions, only: [:new, :create] do
+  delete :destroy, on: :collection
+end
+resources :users, only: [:new, :create, :edit, :update]
 
-root "posts#index"
+root "welcome#index"
 
 resources :posts  do
+  resources :favourites, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
 
 end
 
+resources :tags
 
 
 end

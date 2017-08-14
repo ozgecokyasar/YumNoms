@@ -1,0 +1,6 @@
+<h1>Posts with <%= @tag.name %> tag</h1>
+
+
+<% @posts.each do |prod| %>
+   <%= link_to prod.title, post_path(prod) %>
+<% end %>

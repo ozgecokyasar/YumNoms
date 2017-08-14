@@ -1,0 +1,198 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "materialize/components/color";
+$primary-color: color("white", "teal") !default;
+$secondary-color: color("teal", "teal") !default;
+@import 'materialize';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar {
+  position: relative;
+  z-index: 10;
+  padding: 30px;
+}
+ .navbar ul li a:link {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+  .navbar ul li a {
+  color: white;
+  font-size: 20px;
+  opacity: 1;
+  padding-right: 20px;
+}
+
+.banner{
+  background-image: url('map-blur.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 100%;
+  transform: translate(0px, -200px);
+  position: relative;
+  display: flex;
+
+}
+
+
+@media screen and (max-width: 800px) {
+  .polaroids {
+    visibility: hidden;
+}
+}
+
+.banner li  {
+  list-style-type: none;
+  letter-spacing: 10px;
+  color: white;
+  font-weight: 900;
+}
+
+.signup {
+  color: white;
+  border: thin white solid;
+  padding: 10px;
+  margin: 20px;
+  font-size: 20px;
+}
+
+.signup:hover {
+  color: green;
+  text-decoration: none;
+  border: thin green solid;
+}
+
+.login:hover {
+    color: green;
+    text-decoration: none;
+}
+
+.polaroids {
+  position: relative;
+}
+
+.fa {
+  font-size: 30px;
+  padding: 30px;
+}
+
+.showplace-container {
+  display: flex;
+}
+
+.show-place {
+  margin: auto;
+}
+
+.placeslist-container {
+  display: flex;
+}
+
+.places-list {
+  margin: auto;
+}
+
+.newplace-container {
+  display: flex;
+}
+
+.new-place {
+  margin: auto;
+}
+
+.newuser-container {
+  display: flex;
+}
+.new-user {
+  margin: auto;
+}
+
+.newsession-container {
+  display: flex;
+}
+
+.new-session {
+  margin: auto;
+}
+
+.polaroids {
+  margin-top: -150px;
+}
+
+.photo {
+  height: 238px;
+  width: 200px;
+}
+.photo10 {
+  transform: translate(-600px, -900px)rotate(17deg);
+}
+
+.photo9 {
+  transform: translate(-200px, 00px)rotate(17deg);
+}
+
+.photo8 {
+  transform: translate(140px, 0)rotate(-40deg);
+}
+
+.photo7 {
+  transform: translate(100px, 0)rotate(-17deg);
+}
+
+.photo5 {
+  transform: translate(300px, -200px)rotate(10deg);
+}
+
+.photo3 {
+  transform: translate(700px, -700px)rotate(-20deg);
+}
+
+.photo4 {
+  transform: translate(-100px, -700px) rotate(17deg);
+}
+
+.photo11 {
+    transform: translate(500px, -700px)rotate(-17deg);
+}
+
+form {
+  width: 500px;
+  margin: auto;
+}
+
+.search {
+  padding: 10px;
+  font-size: 20px;
+  color: teal;
+  width: 100%;
+}
+
+
+
+
+.submit {
+  font-size: 20px;
+  background-color: orange;
+  color: white;
+}

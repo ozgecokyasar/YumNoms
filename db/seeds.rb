@@ -9,7 +9,7 @@ Post.destroy_all
 Comment.destroy_all
 Category.destroy_all
 
-categories = ['Ruby', 'Javascript', 'Wordpress', 'Design', 'Front-end']
+categories = ['Lunchtime', 'Happy Hour', 'Late Night'];
 
 categories.each do |category|
   Category.create(name: category)
@@ -17,17 +17,6 @@ end
 
 30.times do
   category = Category.all.sample
+  user = User.all.sample
 
-  Post.create (title: Faker::ChuckNorris.fact,
-                  body: Faker::Hacker.say_something_smart)
 end
-
-posts = Post.all
-
-posts.each do |po|
-  rand(1..5).times do
-    Comment.create(body: Faker::RickAndMorty.quote, post: po)
-  end
-end
-
-comments = Comment.all

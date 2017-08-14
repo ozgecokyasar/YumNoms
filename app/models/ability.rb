@@ -34,5 +34,21 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    can :favourite, Post do |post|
+      post.user != user
+    end
+
+    cannot :favourite, Post do |post|
+      post.user == user
+    end
+
+    can :destroy, Comment do |com|
+      com.user == user
+    end
+
+    cannot :destroy, Comment do |com|
+      com.user != user
+    end
+    
   end
 end

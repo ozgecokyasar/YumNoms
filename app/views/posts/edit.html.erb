@@ -1,5 +1,6 @@
 <h1>Edit Post</h1>
-
+<div class="newplace-container">
+  <div class="new-place">
 <h3 style="color:red"> <%= @post.errors.full_messages.join('. ')%></h3>
 
 <%= form_for @post do |f| %>
@@ -12,6 +13,12 @@
   <%= f.text_area :body %>
 </div>
 <div>
-  <%= f.submit %>
+  <%= f.label :tag_list, "tags, seperated by commas" %>
+  <%= f.text_field :tag_list %>
+</div>
+<div>
+  <%= submit_tag "save changes",  class: 'waves-effect waves-light btn'  %>
 </div>
 <% end %>
+</div>
+</div>

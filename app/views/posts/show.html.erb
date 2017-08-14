@@ -1,62 +1,83 @@
+<div class="showplace-container" >
 
+<div class="show-place">
 
-<div class="show-post">
 <h1><%= @post.title %></h1>
-<%= image_tag("placeholder.jpg", width: "100%") %>
+<p><%= @post.body %></p>
+<p>Category: <%= @post.category.name %></p>
+
+<div class="tags">
+<p><strong>Tags:</strong><% @tags.each do |prod| %>
+ <%= link_to prod.name, tag_path(prod) %> |
+ <% end %></p>
+</div>
+
+<div class="faves">
+  <% favourite = @post.favourites.find_by(user: current_user) %>
+  <% if favourite.present? %>
+    <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
+  <% else %>
+    <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
+  <% end %>
+  <%= pluralize @post.favourites.count, 'Favourite' %>
+</div>
+<div class="edit">
+  <% if user_signed_in? && can?(:manage, @post) %>
+  <div>
+      <%= link_to 'EDIT', edit_post_path(@post) %>
+  </div>
+  <div>
+  <%= link_to 'DELETE', post_path(@post), method: :delete %>
+  </div>
+  <% end %>
+</div>
+
+<div>
+  <h3>Add a Comment</h3>
+  <%= form_for([@post, Comment.new]) do |f| %>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.select :rating, [5, 4 ,3 ,2, 1], class: "browser-default" %>
+  </div>
+
+  <%= submit_tag "submit comment",  class: 'waves-effect waves-light btn'  %>
+  <% end %>
 </div>
 
 
-<div class="summary-long">
-  <p style="float: right"><%= @post.created_at %></p>
-  <h4><%= @post.body %></h4>
-  <br>
 <div>
-      <br>
+  <% @comments.each do |comment| %>
+
       <div>
-        <p>Created by: <%= @post.user&.first_name %></p>
-        <p>Category: <%= @post.category.name %></p>
-      </div>
+        <p><strong>Commenter: </strong> <%= comment.user&.first_name %></p>
+        <p><%= comment.body %></p>
+        <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
 
-
-    <% if user_signed_in? && can?(:manage, @post) %>
-            <%= link_to "Edit", edit_post_path(@post) %> |
-            <%= link_to "Delete", post_path(@post), method: :delete %> |
-
-            <button style="float: right" type="button" name="favorite"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
-    <% end %>
-  </div>
-<hr>
-
-
-
-
-<h2>Comments:</h2>
-
-  <div class="comment-form">
-    <%= form_for([@post, Comment.new]) do |f| %>
-      <div>
-        <div>
-                <%= f.label :body, "Enter your comment" %>
-        </div>
-        <%= f.text_area :body,cols: "60", rows: "5"  %>
-      </div>
-        <%= f.submit %>
-    <% end %>
-  </div>
-
-
-  <ul>
-    <% @post.comments.each do |comment| %>
-    <li>
-      <p> <%= comment.body %> </p>
-      <p><strong>Comment by: </strong> <%= comment.user&.first_name %></p>
-      <p><strong>Created at: </strong> <%= comment.created_at.to_formatted_s(:short) %></p>
-
-      <% if user_signed_in? && can?(:destroy, @comment) %>
-      <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete %>
-      <% end %>
-    </li>
+        <% if user_signed_in? && can?(:destroy, comment) %>
+          <p><%= link_to 'Delete', post_comment_path(@post, comment),
+                 method: :delete, data: { confirm: 'Are you sure?' }  %>
+          </p>
+        <% end %>
   <hr>
-    <% end %>
-  </ul>
+      </div>
+
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
 </div>

@@ -1,13 +1,17 @@
-<h1>Sign in</h1>
+<div class="newsession-container">
+  <div class="new-session">
+    <h1>Sign in</h1>
 
-<%= form_tag session_path do %>
-<div>
-  <%= label_tag :email %>
-  <%= email_field_tag :email %>
+    <%= form_tag sessions_path do %>
+    <div>
+      <%= label_tag :email %>
+      <%= email_field_tag :email %>
+    </div>
+    <div>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+    <%= submit_tag 'Sign In',class: 'waves-effect waves-light btn'%>
+    <% end %>
+  </div>
 </div>
-<div>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-</div>
-<%= submit_tag 'Sign In' %>
-<% end %>

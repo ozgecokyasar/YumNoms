@@ -1,17 +1,18 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :destroy, :show, :update]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorize_user!, only: [:edit, :destroy, :update]
+
 
   def index
     @posts = Post.order(created_at: :desc)
   end
 
   def show
-    @post = Post.find params[:id]
-    @comments = Comment.new
-    @comments = @post.comments.order(created_at: :desc)
 
+    @comment = Comment.new
+    @comments = @post.comments.order(created_at: :desc)
+    @favourite = @post.favourites.find_by(user: current_user)
+    @tags = @post.tags
 
 
   end
@@ -58,7 +59,7 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    params.require(:post).permit(:title, :body, :category_id, :tag_list)
   end
 
   def authorize_user!

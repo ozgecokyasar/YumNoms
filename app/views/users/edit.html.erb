@@ -1,6 +1,7 @@
-<h1>
-Hello, please edit your information:
-</h1>
+<div class="newuser-container">
+  <div class="new-user">
+
+<h1>Hello, please edit your information:</h1>
 <%= form_for @user do |f| %>
 <div>
   <%= f.label :first_name %>
@@ -15,7 +16,7 @@ Hello, please edit your information:
   <%= f.email_field :email %>
 </div>
 
-<%= f.submit %>
+<%= submit_tag "save changes",  class: 'waves-effect waves-light btn'  %>
 <% end %>
 
 <h1>Change password:</h1>
@@ -31,6 +32,8 @@ Hello, please edit your information:
   <%= f.password_field :password_confirmation, placeholder: "Confirm new password" %>
 </div>
 <div>
-  <%= f.submit %>
+  <%= submit_tag "save changes",  class: 'waves-effect waves-light btn' %>
 </div>
 <% end %>
+</div>
+</div>
