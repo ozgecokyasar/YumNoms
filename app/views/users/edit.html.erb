@@ -1,44 +1,26 @@
-<div class="newuser-container">
-  <div class="new-user">
-<div class="edit">
-  <%= form_for @user do |f| %>
-  <h4>Edit your details</h4>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
 
-  <%= submit_tag "save changes",  class: 'waves-effect waves-light btn'  %>
-  <% end %>
+<div class="container" >
+  <div class="show">
+    <div class="edit">
+      <%= simple_form_for @user do |f| %>
+      <h4>Edit your details</h4>
+        <%= f.input :first_name %>
+        <%= f.input  :last_name %>
+        <%= f.input :email %>
+      <%= f.button :submit,  class: 'btn-primary btn'  %>
+      <% end %>
+    </div>
 
-</div>
-
-<div class="change-password">
-  <%= form_for @user do |f| %>
-    <h4>Change password</h4>
-  <div>
-    <%= password_field_tag :current_password, params[:current_password], placeholder: "Current password" %>
-  </div>
-  <div>
-    <%= f.password_field :password, placeholder: "New password (optional)" %>
-  </div>
-  <div>
-    <%= f.password_field :password_confirmation, placeholder: "Confirm new password" %>
-  </div>
-  <div>
-    <%= submit_tag "save changes",  class: 'waves-effect waves-light btn' %>
-  </div>
-  <% end %>
-</div>
+    <div class="change-password">
+      <%= simple_form_for @user do |f| %>
+        <h4>Change password</h4>
+        <%= f.input :current_password%>
+        <%= f.input :password, placeholder: "New password (optional)" %>
+        <%= f.input :password_confirmation, placeholder: "Confirm new password" %>
+        <%= f.button :submit,  class: 'btn-primary btn'  %>
+      <% end %>
+    </div>
 
 
-</div>
+  </div>
 </div>

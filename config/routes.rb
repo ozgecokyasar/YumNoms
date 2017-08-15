@@ -11,6 +11,7 @@ end
 resources :users, only: [:new, :create, :edit, :update]
 
 root "welcome#index"
+resources :welcome
 
 resources :posts  do
   resources :favourites, only: [:create, :destroy]

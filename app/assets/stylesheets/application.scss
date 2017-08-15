@@ -20,131 +20,87 @@
 // $primary-color: color("white", "teal") !default;
 // $secondary-color: color("teal", "teal") !default;
 // @import 'materialize';
-// @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Questrial');
 
 * {
-  font-family: 'Raleway', sans-serif;
+font-family: Helvetica;
 }
 
+form .btn {
+  background-color: #FF1C36;
+  border: #FF1C36;
+}
+
+.btn:hover {
+  background-color: red;
+}
+
+.form-row {
+    display: flex;
+    margin: 20px 0 20px 0;
+}
+
+.banner-content p {
+  flex: 1;
+  padding: 40px;
+}
+
+.near {
+  flex: 1;
+}
+
+.nav .btn {
+  border: none;
+  padding: 10px 15px 10px 15px;
+  margin: auto;
+}
 .navbar {
-  position: relative;
-  z-index: 10;
-  padding: 10px;
-  background: white;
-  position: fixed;
-  top: 0; /* Position the navbar at the top of the page */
-    width: 100%;
+  background-color: white;
+  border: none;
 }
- .navbar ul li a:link {
-  font-size: 17px;
-  text-decoration: none;
-}
-  .navbar ul li a {
-  color: #FF6B00;
-  opacity: 1;
-  padding-right: 20px;
+.login {
+  color: #FF1C36;
 }
 
-.navbar li {
-  font-size: 17px;
+.nav li a:hover{
+background-color: white;
+color: #FF1C36;
 }
 
-.signup {
-  color: white;
-  border: thin #FF6B00 solid;
-  padding: 5px;
-  margin: 20px;
-  font-size: 17px;
-  border-radius: 5px;
-  background: #FF6B00;
-}
-
-.signup:hover {
-  color: #FF6B00;
-  text-decoration: none;
-  background: white;
-
+.hello {
+  margin-top: 15px;
 }
 
 .fa {
   font-size: 20px;
 }
 
-.showplace-container {
-  display: flex;
-  margin-top: 40px;
-}
-
-.show-place {
-  margin: auto;
-}
-
-.placeslist-container {
+.container {
   display: flex;
 }
 
-.places-list {
+.show {
   margin: auto;
+  flex: 1;
 }
-
-.newplace-container {
-  display: flex;
-}
-
-.new-place {
-  margin: auto;
-}
-
-.newuser-container {
-  display: flex;
-}
-.new-user {
-  margin: auto;
-}
-
-.newsession-container {
-  display: flex;
-}
-
-.new-session {
-  margin: auto;
-}
-
 
 .edit {
-  float: left;
-  padding: 40px;
-  margin-top: 50px;
+  margin: auto;
+  flex: 1;
+  padding: 10px 200px 10px 200px;
 }
 
 .change-password {
-  float: left;
-  padding: 40px;
-  margin-top: 50px;
+  margin: auto;
+  flex: 1;
+  padding: 10px 200px 10px 200px;
 }
 
 .reviews {
   margin: 20px;
 }
 
-.map {
-  width: 100%;
-  position: absolute;
-}
-
-.form {
-  z-index: 100;
-  margin: auto;
-  margin-top: 150px;
-}
-
-.banner {
-  position: relative;
-  display: flex;
-  min-height: auto;
-}
-
-.banner p {
-  color: white;
-  margin: 50px;
+.find-deals {
+  padding: 10px 30px 10px 30px;
+  letter-spacing: 2px;
 }

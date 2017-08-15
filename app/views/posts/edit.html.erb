@@ -1,5 +1,5 @@
-<div class="newplace-container">
-  <div class="new-place">
+<div class="container">
+  <div class="show">
     <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
     <div style="margin-top: 100px;">
       <h4>Edit post</h4>
@@ -15,8 +15,8 @@
          <%= f.label :tag_list, "Tags, seperated by commas" %>
          <%= f.input_field :tag_list %>
        </div>
-       <%= f.input :image %>
-        <%= f.button "submit" :submit%>
+       <%= f.input :image%>
+      <%= f.button :submit,  class: 'btn-primary btn'  %>
 
       <% end %>
     </div>

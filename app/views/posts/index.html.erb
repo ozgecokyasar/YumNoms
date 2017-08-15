@@ -1,10 +1,15 @@
-<% if user_signed_in? %>
-<div class="placeslist-container">
-  <div class="places-list">
-    <% @posts.each do |post| %>
-    <%= link_to post.title, post_path(post) %>
-    <hr>
+
+<div class="container" >
+  <div class="show">
+    <% if user_signed_in? %>
+    <div class="placeslist-container">
+      <div class="places-list">
+        <% @posts.each do |post| %>
+        <%= link_to post.title, post_path(post) %>
+        <hr>
+        <% end %>
+      </div>
+    </div>
     <% end %>
-  </div>
 </div>
-<% end %>
+</div>

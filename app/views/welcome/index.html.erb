@@ -1,29 +1,36 @@
 
-    <div class="banner" >
-        <%= image_tag(("map-blur-tint.png"), :class => "map") %>
-        <form class="form">
-            <h4 style="color: white">Find Great Meal Deals Near you</h4>
-            <input type="text" name="text" class="near" placeholder="Enter Your Location">
-            <%= submit_tag "Search",  class: 'waves-effect waves-light btn'  %>
-            <div>
-              <div style="float: left">
-                <p>
-                <i class="fa fa-cutlery" aria-hidden="true">
-                 </i>
-                  Lunch Time Specials
-                </p>
-              </div>
-              <div style="float: left">
-                <p><i class="fa fa-glass" aria-hidden="true"></i>
-                  Happy Hours</p>
-              </div>
-              <div style="float: left">
-                <p> <i class="fa fa-moon-o" aria-hidden="true"></i>
-                  Late Night Deals</p>
-              </div>
-            </div>
-        </form>
-    </div>
-    <div class="footer">
 
-    </div>
+<div class="container row " >
+  <div class="show col-lg-12 col-xs-12 banner">
+    <form class="form">
+      <h1 style="color: black">Find Great Meal Deals<br/> Near you</h1>
+      <br/>
+
+      <div class="form-row">
+        <input type="text" name="text" class="near" placeholder="Enter Your Location">
+        <%= submit_tag "Find Deals",  class: 'btn-primary btn find-deals'  %>
+      </div>
+
+      <div class="banner-content">
+        <div style="float: left">
+          <p>
+            <i class="fa fa-cutlery" aria-hidden="true"></i>
+            Lunch Time Specials
+          </p>
+        </div>
+        <div style="float: left">
+          <p>
+            <i class="fa fa-glass" aria-hidden="true"></i>
+            Happy Hours
+          </p>
+        </div>
+        <div style="float: left">
+          <p>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+              Late Night Deals
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

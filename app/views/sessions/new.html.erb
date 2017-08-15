@@ -1,16 +1,11 @@
-<div class="newsession-container">
-  <div class="new-session">
-    <%= form_tag sessions_path do %>
+
+<div class="container" >
+  <div class="show">
+    <%= simple_form_for sessions_path do |f| %>
     <h3>Sign in</h3>
-    <div>
-      <%= label_tag :email %>
-      <%= email_field_tag :email %>
-    </div>
-    <div>
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div>
-    <%= submit_tag 'Sign In',class: 'waves-effect waves-light btn'%>
+      <%= f.input :email %>
+      <%= f.input :password %>
+    <%= f.button :submit,  class: 'btn-primary btn'  %>
     <% end %>
   </div>
 </div>

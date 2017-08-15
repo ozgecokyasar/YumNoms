@@ -3,7 +3,6 @@ class FavouritesController < ApplicationController
   before_action :find_favourite, only: [:destroy]
 
 
-
   def create
     favourite = Favourite.new user: current_user, post: @post
 
