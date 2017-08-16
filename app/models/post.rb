@@ -10,6 +10,11 @@ mount_uploader :image, ImageUploader
 
   validates :title, {presence: true, length: {maximum: 40}}
   validates :body, {presence: true}
+  validates :address, {presence: true}
+  validates :price, {presence: true}
+  validates :start_time, {presence: true}
+  validates :end_time, {presence: true}
+  validates :category, {presence: true} 
 
   geocoded_by :address
   after_validation :geocode , if: ->(obj){ obj.address.present? and obj.address_changed?}
@@ -23,5 +28,6 @@ mount_uploader :image, ImageUploader
       Tag.where(name: name.downcase).first_or_create!
     end
   end
+
 
 end

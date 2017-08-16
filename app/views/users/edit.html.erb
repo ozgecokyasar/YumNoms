@@ -1,7 +1,7 @@
 
 <div class="container" >
   <div class="show">
-    <div class="edit">
+    <div style="margin-top: 100px;">
       <%= simple_form_for @user do |f| %>
       <h4>Edit your details</h4>
         <%= f.input :first_name %>
@@ -9,9 +9,8 @@
         <%= f.input :email %>
       <%= f.button :submit,  class: 'btn-primary btn'  %>
       <% end %>
-    </div>
-
-    <div class="change-password">
+      <br>
+      <br>
       <%= simple_form_for @user do |f| %>
         <h4>Change password</h4>
         <%= f.input :current_password%>

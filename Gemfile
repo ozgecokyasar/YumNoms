@@ -24,7 +24,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'uglifier', '>= 1.3.0'
 gem "twitter-bootstrap-rails"
 gem 'materialize-sass'
-gem 'bootstrap'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

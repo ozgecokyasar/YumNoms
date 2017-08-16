@@ -31,9 +31,7 @@ form .btn {
   border: #FF1C36;
 }
 
-.btn:hover {
-  background-color: red;
-}
+
 
 .form-row {
     display: flex;
@@ -53,18 +51,16 @@ form .btn {
   border: none;
   padding: 10px 15px 10px 15px;
   margin: auto;
+  color: white;
 }
+
 .navbar {
   background-color: white;
   border: none;
 }
-.login {
-  color: #FF1C36;
-}
-
-.nav li a:hover{
-background-color: white;
-color: #FF1C36;
+.signup {
+  color: white;
+  border: thin #FF1C36 solid;
 }
 
 .hello {
@@ -82,18 +78,7 @@ color: #FF1C36;
 .show {
   margin: auto;
   flex: 1;
-}
-
-.edit {
-  margin: auto;
-  flex: 1;
-  padding: 10px 200px 10px 200px;
-}
-
-.change-password {
-  margin: auto;
-  flex: 1;
-  padding: 10px 200px 10px 200px;
+  margin-bottom: 40px;
 }
 
 .reviews {

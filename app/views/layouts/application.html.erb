@@ -32,13 +32,14 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li class="hello">Hello, <%= current_user.first_name%>!</li>
+              <li><%= link_to 'My YumNoms', user_path(current_user)%></li>
               <li><%= link_to "view places near me", posts_path %></li>
               <li><%=link_to 'create new post', new_post_path %></li>
               <li><%= link_to 'Log Out', sessions_path, method: :delete %></li>
               <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
             <% else %>
-              <li><%= link_to 'Sign Up', new_user_path,  :class => "signup btn btn-danger" %></li>
-              <li><%= link_to "Log In", new_session_path, :class => "login btn btn-default"%></li>
+              <li><%= link_to 'Sign Up', new_user_path,  :class => "signup btn" %></li>
+              <li><%= link_to "Log In", new_session_path, :class => "login btn "%></li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->

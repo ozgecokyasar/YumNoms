@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="show">
+    <h3>Your Favourite YumNoms</h3>
+        <div>
+          <% if current_user.favourites.length < 1 %>
+          <p>You have no favourites</p>
+          <% else %>
+          <% current_user.favourites.each do |favourite| %>
+          <p><%= link_to favourite.post.title, post_path(favourite) %></p>
+          <% end %>
+          <hr>
+        </div>
+
+    <% end %>
+    <h3>Your Posts</h3>
+    <div>
+    <% if current_user.posts.length < 1 %>
+    <p>You have no postings</p>
+    <p>
+      <%=link_to 'create new post', new_post_path, :class => " btn btn-primary"%>
+    </p>
+    <% else %>
+    <% current_user.posts.each do |post| %>
+          <p><%= link_to post.title, post_path(post) %></p>
+    <% end %>
+  </div>
+</div>
+<% end %>

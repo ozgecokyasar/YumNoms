@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-@post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc)
     @favourite = @post.favourites.find_by(user: current_user)
