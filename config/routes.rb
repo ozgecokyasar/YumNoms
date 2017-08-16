@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   end
 
 
-resources :sessions, only: [:new, :create] do
-  delete :destroy, on: :collection
-end
+resource :session, only: [:new, :create, :destroy]
 resources :users
 
 root "welcome#index"
