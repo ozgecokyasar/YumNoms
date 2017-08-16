@@ -6,7 +6,7 @@
           <p>You have no favourites</p>
           <% else %>
           <% current_user.favourites.each do |favourite| %>
-          <p><%= link_to favourite.post.title, post_path(favourite) %></p>
+          <p><%= link_to favourite.post.title, favourite.post %></p>
           <% end %>
           <hr>
         </div>
