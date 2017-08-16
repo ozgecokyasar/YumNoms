@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/geocoder.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*
