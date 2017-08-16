@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-
+@post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc)
     @favourite = @post.favourites.find_by(user: current_user)
@@ -59,7 +59,7 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id, :tag_list, :start_time, :end_time, :price, :image)
+    params.require(:post).permit(:title, :body, :address, :category_id, :tag_list, :start_time, :end_time, :price, :image)
   end
 
   def authorize_user!

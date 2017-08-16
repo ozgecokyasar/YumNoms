@@ -16,7 +16,6 @@ resources :welcome
 resources :posts  do
   resources :favourites, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
-
 end
 
 resources :tags

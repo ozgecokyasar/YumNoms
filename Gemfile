@@ -12,6 +12,7 @@ gem 'font-awesome-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'simple_form'
 gem 'mini_magick'
+gem 'geocoder'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -23,6 +24,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'uglifier', '>= 1.3.0'
 gem "twitter-bootstrap-rails"
 gem 'materialize-sass'
+gem 'bootstrap'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

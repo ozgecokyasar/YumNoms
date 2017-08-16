@@ -11,6 +11,9 @@ mount_uploader :image, ImageUploader
   validates :title, {presence: true, length: {maximum: 40}}
   validates :body, {presence: true}
 
+  geocoded_by :address
+  after_validation :geocode , if: ->(obj){ obj.address.present? and obj.address_changed?}
+
   def tag_list
     tags.map(&:name).join(', ')
   end
