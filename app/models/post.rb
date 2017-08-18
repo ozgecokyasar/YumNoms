@@ -14,10 +14,14 @@ mount_uploader :image, ImageUploader
   validates :price, {presence: true}
   validates :start_time, {presence: true}
   validates :end_time, {presence: true}
-  validates :category, {presence: true} 
+  validates :category, {presence: true}
 
   geocoded_by :address
-  after_validation :geocode , if: ->(obj){ obj.address.present? and obj.address_changed?}
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+
+  def self.search(search)
+    where("address LIKE ?", "%#{search}%")
+  end
 
   def tag_list
     tags.map(&:name).join(', ')

@@ -7,9 +7,10 @@ Rails.application.routes.draw do
 
 resource :session, only: [:new, :create, :destroy]
 resources :users
+resources :post_maps, only: [:index]
 
-root "welcome#index"
-resources :welcome
+root "posts#index"
+
 
 resources :posts  do
   resources :favourites, only: [:create, :destroy]

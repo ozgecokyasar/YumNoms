@@ -39,8 +39,25 @@
 
     <div  class="row">
         <%= image_tag @post.image.medium.url if @post.image.present? %>
-      <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@post.latitude},#{@post.longitude}&markers=#{@post.latitude},#{@post.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
-                  class: 'col-xs-12 col-lg-6 img-fluid img-rounded map', alt: "#{@post.title} on the map"%>
+        <div style='width: 800px;'>
+          <div id="map" style='width: 800px; height: 400px;'></div>
+        </div>
+
+        <script>
+        const handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+          markers = handler.addMarkers([
+            {
+              "lat": <%= @post.latitude %>,
+              "lng": <%= @post.longitude %>,
+              "infowindow": "<%= @post.title%>"
+            }
+          ]);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(16);
+        });
+        </script>
   </div>
 </div>
 
@@ -81,3 +98,15 @@
 
   </div>
 </div>
+
+<h2>Nearby Places:</h2>
+  <ul>
+    <div>
+      <% @post.nearbys(2).each do |nearby_post| %>
+      <li>
+      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(1) %> miles)
+      </li>
+      <% end %>
+    </div>
+
+  </ul>

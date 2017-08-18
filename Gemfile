@@ -13,6 +13,8 @@ gem 'carrierwave', '~> 1.0'
 gem 'simple_form'
 gem 'mini_magick'
 gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

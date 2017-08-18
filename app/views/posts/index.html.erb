@@ -1,15 +1,44 @@
 
-<div class="container">
-  <div class="show">
-    <% if user_signed_in? %>
-    <div class="placeslist-container">
-      <div class="places-list">
-        <% @posts.each do |post| %>
-        <%= link_to post.title, post_path(post) %>
-        <hr>
+
+<div class="container row " >
+  <div class="show col-lg-12 col-xs-12 banner">
+    <form class="form">
+      <h1 style="color: black">Find Great Meal Deals<br/> Near you</h1>
+      <br/>
+
+      <div class="form-row">
+        <%= form_tag posts_path, :method => :get do %>
+        <%= text_field_tag :search, params[:search], class: 'search' %>
+        <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
         <% end %>
       </div>
+
+    </form>
+
+
+    <div style='width: 800px;'>
+      <div id="map" style='width: 800px; height: 400px;'></div>
     </div>
-    <% end %>
-</div>
+
+    <script>
+      const handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    </script>
+
+
+
+
+    <div class="placeslist-container">
+      <div class="places-list">
+          <% @posts.each do |post| %>
+            <%= link_to post.title, post_path(post) %>
+            <hr>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -4,7 +4,18 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.all
+    if params[:search].nil?
+      @posts = Post.where.not(latitude: nil, longitude: nil)
+    else
+      @search = params[:search]
+      @posts = Post.search(@search).order("created_at DESC")
+    end
+    @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.title
+    end
   end
 
   def show
