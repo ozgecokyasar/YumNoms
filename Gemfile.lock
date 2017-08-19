@@ -77,6 +77,8 @@ GEM
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     geocoder (1.4.4)
+    geocomplete_rails (1.7.0)
+      railties (>= 3.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
@@ -213,6 +215,7 @@ DEPENDENCIES
   faker!
   font-awesome-rails
   geocoder
+  geocomplete_rails
   gmaps4rails
   hirb
   interactive_editor

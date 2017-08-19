@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'mini_magick'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'geocomplete_rails'
 gem 'underscore-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

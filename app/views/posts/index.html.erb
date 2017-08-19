@@ -3,7 +3,7 @@
 <div class="container row " >
   <div class="show col-lg-12 col-xs-12 banner">
     <form class="form">
-      <h1 style="color: black">Find Great Meal Deals<br/> Near you</h1>
+      <h1 style="color: black">Find Great Meal Deals Near you</h1>
       <br/>
 
       <div class="form-row">
@@ -16,8 +16,9 @@
     </form>
 
 
-    <div style='width: 800px;'>
-      <div id="map" style='width: 800px; height: 400px;'></div>
+    <div class="col-lg-9 col-xs-12">
+      <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
+      </div>
     </div>
 
     <script>
@@ -27,18 +28,23 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
+
+      $('input').geocomplete({
+        map: '#map'
+      });
+
     </script>
 
 
 
-
-    <div class="placeslist-container">
-      <div class="places-list">
-          <% @posts.each do |post| %>
-            <%= link_to post.title, post_path(post) %>
-            <hr>
-          <% end %>
+    <div class="FixedHeightContainer  col-lg-3 col-xs-12">
+      <div class="post-list">
+        <% @posts.each do |post| %>
+          <%= link_to post.title, post_path(post) %>
+          <hr>
+        <% end %>
       </div>
     </div>
+
   </div>
 </div>

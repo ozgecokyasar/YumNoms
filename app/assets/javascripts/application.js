@@ -16,4 +16,5 @@
 //= require rails-ujs
 //= require underscore
 //= require gmaps/google
+//= require geocomplete
 //= require_tree .
