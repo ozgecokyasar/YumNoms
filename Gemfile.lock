@@ -74,6 +74,7 @@ GEM
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
+    filterrific (2.1.2)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     geocoder (1.4.4)
@@ -213,6 +214,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   faker!
+  filterrific
   font-awesome-rails
   geocoder
   geocomplete_rails

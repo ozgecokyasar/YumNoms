@@ -16,6 +16,7 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'geocomplete_rails'
 gem 'underscore-rails'
+ gem 'filterrific'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server

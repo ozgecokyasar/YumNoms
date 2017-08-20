@@ -16,6 +16,8 @@ class PostsController < ApplicationController
       marker.lng post.longitude
       marker.infowindow post.title
     end
+
+
   end
 
   def show
@@ -24,8 +26,6 @@ class PostsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)
     @favourite = @post.favourites.find_by(user: current_user)
     @tags = @post.tags
-
-
   end
 
   def new

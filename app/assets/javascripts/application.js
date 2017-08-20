@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require vendor/selectize.min
 //= require rails-ujs

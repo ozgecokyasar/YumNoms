@@ -20,6 +20,8 @@
 // $primary-color: color("white", "teal") !default;
 // $secondary-color: color("teal", "teal") !default;
 // @import 'materialize';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 
 * {
