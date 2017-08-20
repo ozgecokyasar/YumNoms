@@ -12,7 +12,6 @@
         <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
         <% end %>
       </div>
-
     </form>
 
 
@@ -27,10 +26,12 @@
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
+          handler.getMap().setZoon(17);
+
       });
 
       $('input').geocomplete({
-        map: '#map'
+        search: '.map'
       });
 
     </script>
