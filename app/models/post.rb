@@ -3,6 +3,7 @@ mount_uploader :image, ImageUploader
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :favourites, dependent: :destroy
+
   has_many :favers, through: :favourites, source: :user
   has_many :comments, dependent: :destroy
   belongs_to :user, optional: true
@@ -20,7 +21,11 @@ mount_uploader :image, ImageUploader
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   def self.search(search)
+    if search
     where("address LIKE ?", "%#{search}%")
+  else
+    all
+  end
   end
 
   def tag_list
@@ -32,6 +37,14 @@ mount_uploader :image, ImageUploader
       Tag.where(name: name.downcase).first_or_create!
     end
   end
+
+  def average_rating
+    if self.comments.size > 0
+        self.comments.average(:rating)
+    else
+        'no rating'
+    end
+end
 
 
 

@@ -104,7 +104,7 @@
     <div>
       <% @post.nearbys(2).each do |nearby_post| %>
       <li>
-      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(1) %> miles)
+      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(5) %> miles)
       </li>
       <% end %>
     </div>

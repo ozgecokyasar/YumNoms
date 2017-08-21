@@ -21,6 +21,7 @@
     <% current_user.posts.each do |post| %>
           <p><%= link_to post.title, post_path(post) %></p>
     <% end %>
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">New Post</button>
   </div>
 </div>
 <% end %>
@@ -32,7 +33,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create a new idea!</h4>
+          <h4 class="modal-title">Add a new YumNom Location!</h4>
         </div>
         <div class="modal-body form-group">
           <%= simple_form_for Post.new do |p| %>

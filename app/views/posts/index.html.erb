@@ -12,6 +12,8 @@
         <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
         <% end %>
       </div>
+      <div>
+      </div>
     </form>
 
 
@@ -23,15 +25,17 @@
 
     <script>
       const handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
 
-        $('input').geocomplete({
-            search: '.search'
-          });
+      $('input').geocomplete({
+        map: '#map'
+      });
+
+});
 
 
 
@@ -42,7 +46,20 @@
     <div class="FixedHeightContainer  col-lg-3 col-xs-12">
       <div class="post-list">
         <% @posts.each do |post| %>
-          <%= link_to post.title, post_path(post) %>
+        <div class="image">
+            <%= image_tag post.image.small.url if post.image.present? %>
+            <div class="text">
+              <%= link_to post.title, post_path(post) %>
+              <p><%= post.address %></p>
+              <p>$<%= post.price %></p>
+              <p>Rating: <%= post.average_rating %>/5.0</p>
+              <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
+            </div>
+        </div>
+
+
+
+
           <hr>
         <% end %>
       </div>
