@@ -24,22 +24,23 @@
     </div>
 
     <script>
-      const handler = Gmaps.build('Google');
-        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
+    const handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers;
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(17);
 
       $('input').geocomplete({
         map: '#map'
       });
 
-});
-
-
-
+    });
     </script>
+
+
+
+
 
 
 
@@ -52,13 +53,14 @@
               <%= link_to post.title, post_path(post) %>
               <p><%= post.address %></p>
               <p>$<%= post.price %></p>
+              <% if post.comments.size > 0 %>
               <p>Rating: <%= post.average_rating %>/5.0</p>
+              <% else %>
+              <p>No rating</p>
+              <% end %>
               <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
             </div>
-        </div>
-
-
-
+          </div>
 
           <hr>
         <% end %>
