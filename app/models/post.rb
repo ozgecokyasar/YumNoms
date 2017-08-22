@@ -12,6 +12,9 @@ mount_uploader :image, ImageUploader
   validates :title, {presence: true, length: {maximum: 40}}
   validates :body, {presence: true}
   validates :address, {presence: true}
+  validates :city, {presence: true}
+  validates :country, {presence: true}
+  validates :postcode, {presence: true}
   validates :price, {presence: true}
   validates :start_time, {presence: true}
   validates :end_time, {presence: true}
@@ -22,10 +25,10 @@ mount_uploader :image, ImageUploader
 
   def self.search(search)
     if search
-    where("address LIKE ?", "%#{search}%")
-  else
-    all
-  end
+      where("address ILIKE ?", "%#{search}%")
+    else
+      all
+    end
   end
 
   def tag_list

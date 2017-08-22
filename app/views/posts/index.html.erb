@@ -16,8 +16,6 @@
       </div>
     </form>
 
-
-
     <div class="col-lg-9 col-xs-12">
       <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
       </div>
@@ -26,15 +24,15 @@
     <script>
     const handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers;
+      markers = handler.addMarkers(<%= raw @locations %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(17);
+      // handler.getMap().setZoom();
 
-      $('input').geocomplete({
-        map: '#map'
-      });
-
+      // $('input').geocomplete({
+      //   map: '#map'
+      // });
+      $("input#search").geocomplete();
     });
     </script>
 

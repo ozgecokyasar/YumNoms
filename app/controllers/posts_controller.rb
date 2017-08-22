@@ -2,22 +2,16 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :destroy, :show, :update]
   before_action :authenticate_user!, except: [:index, :show]
 
-
   def index
     @posts = Post.all
     if params[:search].nil?
       @posts = Post.where.not(latitude: nil, longitude: nil)
     else
-      @search = params[:search]
-      @posts = Post.search(@search).order("created_at DESC")
-    end
-    @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
-      marker.lat post.latitude
-      marker.lng post.longitude
-      marker.infowindow post.title
+      @search = params[:search].split(',').first
+      @posts = Post.search(@search).where.not(latitude: nil, longitude: nil).order("created_at DESC")
     end
 
-
+    @locations = locations_json(@posts)
   end
 
   def show
@@ -30,7 +24,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-
   end
 
   def create
@@ -70,7 +63,7 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:title, :body, :address, :category_id, :tag_list, :start_time, :end_time, :price, :image)
+    params.require(:post).permit(:title, :body, :address, :city, :postcode, :country, :category_id, :tag_list, :start_time, :end_time, :price, :image)
   end
 
   def authorize_user!
@@ -83,4 +76,11 @@ private
     @post = Post.find params[:id]
   end
 
+  def locations_json(posts)
+    Gmaps4rails.build_markers(posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.title
+    end.to_json
+  end
 end

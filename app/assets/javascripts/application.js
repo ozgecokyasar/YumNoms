@@ -18,4 +18,5 @@
 //= require underscore
 //= require gmaps/google
 //= require geocomplete
+//= require materialize
 //= require_tree .
