@@ -47,6 +47,7 @@
 
             <% else %>
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Sign Up</button>
+              <%= link_to 'Sign in with Twitter', sign_in_with_twitter_path %>
               <li><%= link_to "Log In", new_session_path, :class => "login btn "%></li>
             <% end %>
           </ul>

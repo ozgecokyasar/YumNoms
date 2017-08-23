@@ -1,0 +1,2 @@
+ENV['TWITTER_API_KEY'] = 'tApgc36KrkaintCsozfcWfZAf'
+ENV['TWITTER_API_SECRET'] = 'iqkrZKWui5rKy7cfGsFfPPVwMB7ouGS0BE2ktACJSqmTutZiPJ'

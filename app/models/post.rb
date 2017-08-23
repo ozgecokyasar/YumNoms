@@ -19,9 +19,10 @@ mount_uploader :image, ImageUploader
   validates :start_time, {presence: true}
   validates :end_time, {presence: true}
   validates :category, {presence: true}
+  validates :image, {presence: true}
 
   geocoded_by :address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address? }
 
   def self.search(search)
     if search

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822214654) do
+ActiveRecord::Schema.define(version: 20170823191827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(version: 20170822214654) do
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -69,16 +60,6 @@ ActiveRecord::Schema.define(version: 20170822214654) do
     t.string "postcode"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
-  create_table "searches", force: :cascade do |t|
-    t.string "tag"
-    t.string "category"
-    t.decimal "min_price"
-    t.decimal "max_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "tag_list"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -104,18 +85,19 @@ ActiveRecord::Schema.define(version: 20170822214654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_admin", default: false
-    t.string "auth_token"
-    t.string "password_reset_toke"
-    t.datetime "password_reset_sent_at"
+    t.string "uid"
+    t.string "provider"
+    t.string "oauth_token"
+    t.string "oauth_secret"
+    t.text "oauth_raw_data"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
   end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "favourites", "posts"
   add_foreign_key "favourites", "users"
-  add_foreign_key "likes", "posts"
-  add_foreign_key "likes", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "posts"
