@@ -65,14 +65,9 @@
     <div style="margin-top: 50px;">
       <h5>Add Review</h5>
       <%= simple_form_for([@post, Comment.new]) do |f| %>
-        <%= f.input :body%>
+        <%= f.text_area :body %>
         <%= f.select :rating, [5, 4 ,3 ,2, 1], class: "browser-default" %>
-        <br />
-        <br />
-        <div>
           <%= f.button :submit,  class: 'btn-primary btn'  %>
-        </div>
-
       <% end %>
     </div>
 

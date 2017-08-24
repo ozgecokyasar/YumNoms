@@ -26,7 +26,7 @@ mount_uploader :image, ImageUploader
 
   def self.search(search)
     if search
-      where("address ILIKE ?", "%#{search}%")
+      where("address ILIKE ? OR city ILIKE ? OR country ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end

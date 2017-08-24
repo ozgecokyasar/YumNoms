@@ -1,69 +1,41 @@
 <div class="container">
   <div class="show">
-    <h3>Your Favourite YumNoms</h3>
-        <div>
-          <% if current_user.favourites.length < 1 %>
-          <p>You have no favourites</p>
-          <% else %>
-          <% current_user.favourites.each do |favourite| %>
-          <p><%= link_to favourite.post.title, favourite.post %></p>
+
+
+    <div class="row">
+      <h3>Your Favourite YumNoms</h3>
+
+            <% if current_user.favourites.length < 1 %>
+              <p>You have no favourites</p>
+              <% else %>
+              <% current_user.favourites.each do |favourite| %>
+              <div>
+                <div class="posts col-lg-4 col-sm-12">
+                  <div class="post">
+                    <%= image_tag post.image.small.url if post.image.present? %>
+                  </div>
+                  <div class="summary">
+                    <p><%= link_to favourite.post.title, favourite.post %></p>
+                    <p><%= post.body %></p>
+                    <p><%= post.price %></p>
+                  </div>
+            <% end %>
+            <hr>
+            <% end %>
+
+
+
+
+      <h3>Your Posts</h3>
+      <div>
+        <% if current_user.posts.length < 1 %>
+        <p>You have no postings</p>
+          <p><%= link_to 'create new post', new_post_path %></p>
+        <% else %>
+          <% current_user.posts.each do |post| %>
+            <p><%= link_to post.title, post_path(post) %></p>
+
           <% end %>
-          <hr>
-        </div>
 
-    <% end %>
-    <h3>Your Posts</h3>
-    <div>
-    <% if current_user.posts.length < 1 %>
-    <p>You have no postings</p>
-      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">New Post</button>
-    <% else %>
-    <% current_user.posts.each do |post| %>
-          <p><%= link_to post.title, post_path(post) %></p>
-    <% end %>
-    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">New Post</button>
-  </div>
-</div>
-<% end %>
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add a new YumNom Location!</h4>
-        </div>
-        <div class="modal-body form-group">
-          <%= simple_form_for Post.new do |p| %>
-
-          <%= p.input :title %>
-          <%= p.input :body  %>
-          <%= p.input :address %>
-          <%= p.input :city %>
-          <%= p.country_select :country %>
-          <%= p.input :postcode %>
-          <%= p.input :price %>
-          <%= p.input :start_time %>
-          <%= p.input :end_time %>
-          <%= p.collection_select :category_id, Category.all, :id, :name, class: "browser-default" %>
-          <br />
-          <br />
-         <div class="form-group">
-           <%= p.label :tag_list, "Tags, seperated by commas" %>
-           <%= p.input_field :tag_list %>
-         </div>
-         <%= p.input :image, class: 'btn btn-primary' %>
-         <div>
-          <%= p.button :submit,  class: 'btn-primary btn'  %>
-         </div>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
       </div>
-
-    </div>
-  </div>
+      <% end %>

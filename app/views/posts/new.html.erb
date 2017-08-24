@@ -6,8 +6,8 @@
       <%= simple_form_for @post do |f| %>
 
         <%= f.input :title %>
-        <%= f.input :body  %>
-        <%= f.input :address %>
+        <%= f.input :body, :as => :string  %>
+        <%= f.input :address, :as => :string %>
         <%= f.input :city %>
         <%= f.country_select :country %>
         <%= f.input :postcode %>
