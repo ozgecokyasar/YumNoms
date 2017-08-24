@@ -9,16 +9,11 @@
               <p>You have no favourites</p>
               <% else %>
               <% current_user.favourites.each do |favourite| %>
-              <div>
-                <div class="posts col-lg-4 col-sm-12">
-                  <div class="post">
-                    <%= image_tag post.image.small.url if post.image.present? %>
-                  </div>
-                  <div class="summary">
+<%= image_tag favourite.post.image.small.url %>
                     <p><%= link_to favourite.post.title, favourite.post %></p>
-                    <p><%= post.body %></p>
-                    <p><%= post.price %></p>
-                  </div>
+                    <p><%= favourite.post.body %></p>
+                    <p><%= favourite.post.price %></p>
+
             <% end %>
             <hr>
             <% end %>
@@ -33,6 +28,7 @@
           <p><%= link_to 'create new post', new_post_path %></p>
         <% else %>
           <% current_user.posts.each do |post| %>
+          <%= image_tag post.image.small.url if post.image.present? %>    
             <p><%= link_to post.title, post_path(post) %></p>
 
           <% end %>
