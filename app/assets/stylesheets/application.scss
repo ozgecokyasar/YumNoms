@@ -38,23 +38,23 @@ form .btn {
 }
 
 #map {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   padding: 0;
-  height: 600px;
+  height: 400px;
   float: left;
   width: 100%;
 }
 
-.post-list {
-  margin: 20px 70px 0 0;
-  overflow:auto;
-  height:600px;
-  background:#fff;
-}
+// .post-list {
+//   margin: 20px 70px 0 0;
+//   overflow:auto;
+//   height:600px;
+//   background:#fff;
+// }
 
 .FixedHeightContainer
 {
-  height: 600px;
+  height: 400px;
   padding:3px;
   overflow: scroll;
   margin: 20px 0;
@@ -131,26 +131,18 @@ form .btn {
   letter-spacing: 2px;
 }
 
-.logo {
-  width: 80px;
-}
-
 .image-card {
   position: relative;
 }
 
-.text {
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(255,0,0,0.4);
-  color: white;
-padding: 0 20px 0 20px;
+.each-post {
+  display: flex;
 }
 
-.title {
-  position: absolute;
-  top:0;
-  margin: 0 10px 0 10px;
-  font-size: 20px;
-  color: white;
+.post-image {
+  flex: 1;
+}
+
+.text {
+  flex: 3;
 }

@@ -1,71 +1,62 @@
 
+<div class="container-fluid">
+  <div class="container row " >
+    <div class="show col-lg-12 col-xs-12 banner">
+      <form class="form">
+        <div class="form-row">
+          <%= form_tag posts_path, :method => :get do %>
+          <%= text_field_tag :search, params[:search], class: 'search' %>
+          <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
+          <% end %>
+        </div>
+        <div>
+        </div>
+      </form>
 
-<div class="container row " >
-  <div class="show col-lg-12 col-xs-12 banner">
-    <form class="form">
-      <h1 style="color: black">Find Great Meal Deals Near you</h1>
-      <br/>
-
-      <div class="form-row">
-        <%= form_tag posts_path, :method => :get do %>
-        <%= text_field_tag :search, params[:search], class: 'search' %>
-        <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
-        <% end %>
+      <div class="col-lg-8 col-xs-12">
+        <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
+        </div>
       </div>
-      <div>
+
+      <script>
+      const handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%= raw @locations %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        $("input#search").geocomplete();
+      });
+      </script>
+
+
+
+
+
+
+
+      <div class="FixedHeightContainer col-lg-4 col-xs-12">
+        <div class="post-list">
+          <% @posts.each do |post| %>
+              <div class="each-post">
+                <div class="text">
+                  <%= link_to post.title, post_path(post) %>
+                  <p><%= post.address %></p>
+                  <p>$<%= post.price %></p>
+                  <% if post.comments.size > 0 %>
+                  <p>Rating: <%= post.average_rating %>/5.0</p>
+                  <% else %>
+                  <p>No rating</p>
+                  <% end %>
+                  <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
+                </div>
+                <div class="post-image">
+                  <%= image_tag post.image.small.url%>
+                </div>
+              </div>
+              <hr>
+          <% end %>
+        </div>
       </div>
-    </form>
-
-    <div class="col-lg-9 col-xs-12">
-      <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
-      </div>
-    </div>
-
-    <script>
-    const handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%= raw @locations %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      // handler.getMap().setZoom();
-
-      // $('input').geocomplete({
-      //   map: '#map'
-      // });
-      $("input#search").geocomplete();
-    });
-    </script>
 
 
-
-
-
-
-
-    <div class="FixedHeightContainer  col-lg-3 col-xs-12">
-      <div class="post-list">
-        <% @posts.each do |post| %>
-        <div class="image-card">
-            <div><%= image_tag post.image.small.url if post.image.present? %>
-            </div>
-
-            <div class="title">
-                <%= link_to post.title, post_path(post) %>
-            </div>
-
-              <div class="text">
-              <p><%= post.address %></p>
-              <p>$<%= post.price %></p>
-              <% if post.comments.size > 0 %>
-              <p>Rating: <%= post.average_rating %>/5.0</p>
-              <% else %>
-              <p>No rating</p>
-              <% end %>
-              <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
-            </div>
-          </div>
-
-          <hr>
-        <% end %>
-      </div>
-    </div>
+</div>
