@@ -1,37 +1,42 @@
-<div class="container">
-  <div class="show">
+<div class="container-fluid">
 
-
-    <div class="row">
-      <h3>Your Favourite YumNoms</h3>
-
+        <div class="row">
+          <h3>Your Favourite YumNoms</h3>
             <% if current_user.favourites.length < 1 %>
               <p>You have no favourites</p>
               <% else %>
               <% current_user.favourites.each do |favourite| %>
-<%= image_tag favourite.post.image.small.url %>
-                    <p><%= link_to favourite.post.title, favourite.post %></p>
-                    <p><%= favourite.post.body %></p>
-                    <p><%= favourite.post.price %></p>
-
+              <div class="col-sm-12 col-lg-3">
+                <%= image_tag favourite.post.image.small.url %>
+                      <p><%= link_to favourite.post.title, favourite.post %></p>
+                      <p><%= favourite.post.body %></p>
+                      <p><%= favourite.post.price %></p>
+              </div>
             <% end %>
             <hr>
             <% end %>
+        </div>
 
 
-
-
-      <h3>Your Posts</h3>
-      <div>
-        <% if current_user.posts.length < 1 %>
-        <p>You have no postings</p>
-          <p><%= link_to 'create new post', new_post_path %></p>
-        <% else %>
-          <% current_user.posts.each do |post| %>
-          <%= image_tag post.image.small.url if post.image.present? %>    
+  <div class="row">
+    <h3>Your YumNom posts</h3>
+    <% if current_user.posts.length < 1 %>
+    <p> You have no posts </p>
+      <p><%= link_to 'create new post', new_post_path %></p>
+    <% else %>
+        <% current_user.posts.each do |post| %>
+          <div class="col-sm-12 col-lg-3">
+            <%= image_tag post.image.small.url if post.image.present? %>
             <p><%= link_to post.title, post_path(post) %></p>
+          </div>
+        <% end %>
+        <hr>
+    <% end %>
 
-          <% end %>
 
-      </div>
-      <% end %>
+</div>
+
+
+
+
+</div>
