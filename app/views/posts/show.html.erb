@@ -1,6 +1,4 @@
 
-
-
 <div class="posts-container" >
   <div class="show">
     <div class="row">
@@ -10,8 +8,10 @@
       </div>
 
       <div class="column2 col-lg-4">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">View on Map</button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
+        <div>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">View on Map</button>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
+        </div>
 
         <h2><%= @post.title %></h2>
         <p><strong>Price:</strong> $<%= @post.price %></p>
