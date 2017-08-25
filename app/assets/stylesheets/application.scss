@@ -33,9 +33,6 @@ form .btn {
   border: #FF1C36;
 }
 
-.map-container {
-  display: flex;
-}
 
 #map {
   margin: 20px 0 0 0;
@@ -44,13 +41,6 @@ form .btn {
   float: left;
   width: 100%;
 }
-
-// .post-list {
-//   margin: 20px 70px 0 0;
-//   overflow:auto;
-//   height:600px;
-//   background:#fff;
-// }
 
 .FixedHeightContainer
 {
@@ -69,70 +59,31 @@ form .btn {
 }
 
 .FixedHeightContainer::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
+  background-color: pink;
   outline: 1px solid slategrey;
 }
-
 
 .form-row {
     display: flex;
     margin: 20px 0 20px 0;
 }
 
-.banner-content p {
-  flex: 1;
-  padding: 40px;
-}
-
 .search {
   flex: 1;
-}
-
-.nav .btn {
-  border: none;
-  padding: 10px 15px 10px 15px;
-  margin: auto;
-  color: white;
 }
 
 .navbar {
   background-color: white;
   border: none;
 }
-.signup {
-  color: white;
-  border: thin #FF1C36 solid;
-}
-
-.hello {
-  margin-top: 15px;
-}
 
 .fa {
   font-size: 20px;
 }
 
-.container {
-  display: flex;
-}
-
-.show {
-  margin: auto;
-  flex: 1;
-  margin-bottom: 40px;
-}
-
-.reviews {
-  margin: 20px;
-}
-
 .find-deals {
   padding: 10px 30px 10px 30px;
   letter-spacing: 2px;
-}
-
-.image-card {
-  position: relative;
 }
 
 .each-post {
@@ -144,5 +95,28 @@ form .btn {
 }
 
 .text {
-  flex: 3;
+  flex: 4;
+}
+
+.grey-row {
+  background-color: #DBDBDB;
+  height: 300px;
+  position: relative;
+}
+
+.show {
+  display: flex;
+  margin: 30px;
+}
+
+.row {
+  flex: 1;
+}
+
+.post-details {
+  margin: 0 30px 0 30px;
+  text-align: left;
+  padding: 20px 0 20px 60px;
+  margin: auto;
+  border-radius: 20px;
 }

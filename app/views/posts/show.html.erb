@@ -1,107 +1,162 @@
 
 
 
-<div class="container" >
+<div class="posts-container" >
   <div class="show">
-    <div class="post-details">
-      <div>
+    <div class="row">
 
-
-      <h1><%= @post.title %></h1>
-          <% if user_signed_in? && can?(:manage, @post) %>
-          <%= link_to 'EDIT', edit_post_path(@post) %>
-          <%= link_to 'DELETE', post_path(@post), method: :delete %>
-          <% end %>
-      <p><%= @post.body %></p>
-      <p><strong>Address:</strong><%= @post.address %></p>
-      <p><strong>Price:</strong><%= @post.price %></p>
-      <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
-      <p><strong>Category:</strong> <%= @post.category.name %></p>
-
-      <div class="tags">
-        <p><strong>Tags:</strong><% @tags.each do |prod| %>
-           <%= link_to prod.name, tag_path(prod) %> |
-         <% end %></p>
+      <div class="column1 col-lg-4">
+          <%= image_tag (@post.image.medium.url) %>
       </div>
 
+      <div class="column2 col-lg-4">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">View on Map</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
 
-
-      <div class="faves">
-        <% favourite = @post.favourites.find_by(user: current_user) %>
-        <% if favourite.present? %>
-          <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
-        <% else %>
-          <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
+        <h2><%= @post.title %></h2>
+        <p><strong>Price:</strong> $<%= @post.price %></p>
+        <p><strong>Description: </strong><%= @post.body %></p>
+        <p><strong>Address:</strong> <%= @post.full_address %></p>
+        <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
+        <p><strong>Category:</strong> <%= @post.category.name %></p>
+        <% if user_signed_in? && can?(:manage, @post) %>
+        <%= link_to 'EDIT', edit_post_path(@post) %>
+        <%= link_to 'DELETE', post_path(@post), method: :delete %>
         <% end %>
-        <%= pluralize @post.favourites.count, 'favourite' %>
+        <div class="tags">
+          <% if @post.tags.present? %>
+          <p><strong>Tags:</strong><% @tags.each do |prod| %>
+             <%= link_to prod.name, tag_path(prod) %> |
+           <% end %></p>
+           <% end %>
+        </div>
+        <div class="faves">
+          <% favourite = @post.favourites.find_by(user: current_user) %>
+          <% if favourite.present?%>
+            <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
+          <% else %>
+            <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
+          <% end %>
+          <%= pluralize @post.favourites.count, 'favourite' %>
+        </div>
       </div>
-  </div>
 
-    <div  class="row">
-        <%= image_tag @post.image.medium.url if @post.image.present? %>
-        <div style='width: 800px;'>
-          <div id="map" style='width: 800px; height: 400px;'></div>
+      <div class="column3 col-lg-4">
+        <% if @comments.present? %>
+        <h2>Reviews:</h2>
+        <div class="FixedHeightContainer">
+            <% @comments.each do |comment| %>
+                <div>
+                  <p><%= comment.body %></p>
+                  <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
+                  <p><strong>Review By: </strong> <%= comment.user&.first_name %></p>
+                  <% if user_signed_in? && can?(:destroy, comment) %>
+                    <p><%= link_to 'Delete Comment', post_comment_path(@post, comment),
+                           method: :delete, data: { confirm: 'Are you sure?' }  %>
+                    </p>
+                  <% end %>
+                  <hr>
+                </div>
+            <% end %>
+            <% else %>
+            <h2>There are no reviews for this YumNom</h2>
+            <% end %>
+          </div>
         </div>
 
-        <script>
-        const handler = Gmaps.build('Google');
-        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-          markers = handler.addMarkers([
-            {
-              "lat": <%= @post.latitude %>,
-              "lng": <%= @post.longitude %>,
-              "infowindow": "<%= @post.title%>"
-            }
-          ]);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          handler.getMap().setZoom(16);
-        });
-        </script>
+      </div>
+    </div>
   </div>
+
+
+
+
+
+<div class="row" style="margin: auto">
+  <% if @post.nearbys.present? %>
+    <h3>Nearby Places</h3>
+    <% @post.nearbys(2).each do |nearby_post| %>
+    <div class="col-xs-6 col-sm-4 col-lg-2">
+      <%= image_tag nearby_post.image.small.url %>
+      <p>
+      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(5) %> miles)
+    </p>
+    </div>
+  <% end %>
+  <hr>
+  <% end %>
 </div>
 
-    <hr>
-    <div style="margin-top: 50px;">
-      <h5>Add Review</h5>
-      <%= simple_form_for([@post, Comment.new]) do |f| %>
-        <%= f.text_area :body %>
-        <%= f.select :rating, [5, 4 ,3 ,2, 1], class: "browser-default" %>
-          <%= f.button :submit,  class: 'btn-primary btn'  %>
-      <% end %>
+
+
+
+  <div class="modal fade" id="myModal4" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sign Up!</h4>
+          </div>
+          <div class="modal-body form-group">
+            <%= simple_form_for([@post, Comment.new]) do |f| %>
+            <div>
+              <%= f.input :body %>
+            </div>
+            <div>
+              <p>What would you rate this YumNom out of 5?</p>
+              <%= f.select :rating, [5, 4 ,3 ,2, 1], class: "browser-default" %>
+            </div>
+            <br>
+              <div>
+              <%= f.button :submit,  class: 'btn-primary btn'  %>
+              </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
+    <div class="modal fade" id="myModal6" role="dialog">
+        <div class="modal-dialog">
 
-    <div class="reviews">
-      <% @comments.each do |comment| %>
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div>
 
-          <div>
-            <p><%= comment.body %></p>
-            <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
-            <p><strong>Review By: </strong> <%= comment.user&.first_name %></p>
+                  <div style='width: 100%;'>
+                    <div id="map" style='width: 100%; height: 400px;'></div>
+                  </div>
 
-            <% if user_signed_in? && can?(:destroy, comment) %>
-              <p><%= link_to 'Delete', post_comment_path(@post, comment),
-                     method: :delete, data: { confirm: 'Are you sure?' }  %>
-              </p>
-            <% end %>
-            <hr>
+                  <script>
+                  const handler = Gmaps.build('Google');
+                  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                    markers = handler.addMarkers([
+                      {
+                        "lat": <%= @post.latitude %>,
+                        "lng": <%= @post.longitude %>,
+                        "infowindow": "<%= @post.title%>"
+                      }
+                    ]);
+                    handler.bounds.extendWith(markers);
+                    handler.fitMapToBounds();
+                  });
+                  </script>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
 
-      <% end %>
-    </div>
-
-  </div>
-</div>
-
-<h2>Nearby Places:</h2>
-  <ul>
-    <div>
-      <% @post.nearbys(2).each do |nearby_post| %>
-      <li>
-      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(5) %> miles)
-      </li>
-      <% end %>
-    </div>
-
-  </ul>
+        </div>
+      </div>

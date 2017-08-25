@@ -32,6 +32,10 @@ mount_uploader :image, ImageUploader
     end
   end
 
+  def full_address
+    "#{address}, #{city}, #{postcode}, #{country}"
+  end
+
   def tag_list
     tags.map(&:name).join(', ')
   end

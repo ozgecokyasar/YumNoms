@@ -13,7 +13,7 @@
         </div>
       </form>
 
-      <div class="col-lg-8 col-xs-12">
+      <div class="col-lg-7 col-xs-12">
         <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
         </div>
       </div>
@@ -34,16 +34,16 @@
 
 
 
-      <div class="FixedHeightContainer col-lg-4 col-xs-12">
+      <div class="FixedHeightContainer col-lg-5 col-xs-12">
         <div class="post-list">
           <% @posts.each do |post| %>
               <div class="each-post">
                 <div class="text">
-                  <%= link_to post.title, post_path(post) %>
-                  <p><%= post.address %></p>
+                  <h3><%= link_to post.title, post_path(post) %></h3>
+                  <p><%= post.full_address %></p>
                   <p>$<%= post.price %></p>
                   <% if post.comments.size > 0 %>
-                  <p>Rating: <%= post.average_rating %>/5.0</p>
+                  <p>Rating: <%= post.average_rating %>/5.0 (<%= post.comments.count %>)</p>
                   <% else %>
                   <p>No rating</p>
                   <% end %>
