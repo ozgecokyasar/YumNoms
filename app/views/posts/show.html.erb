@@ -150,6 +150,11 @@
                     handler.bounds.extendWith(markers);
                     handler.fitMapToBounds();
                   });
+
+                  $("#myModal6").on("shown.bs.modal", function () {
+                    google.maps.event.trigger(map, "resize");
+                  });
+                  
                   </script>
             </div>
             </div>
