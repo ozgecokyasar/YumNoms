@@ -41,14 +41,9 @@
       <div class="price" style="top: 0">
           <p style="color: white; font-size: 20px">$<%= post.price %></p>
       </div>
+<div style="height: 80px;">
 
-        <p><%= post.full_address %></p>
-      <% if post.comments.size > 0 %>
-        <p>Rating: <%= post.average_rating %>/5.0 (<%= post.comments.count %>)</p>
-      <% else %>
-        <p>No ratings</p>
-      <% end %>
-        <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
+</div>
 
         <div class="title" style="bottom: 0">
           <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
@@ -59,38 +54,3 @@
 
 
 </div>
-
-
-<!--
-
-
-
-
-
-
-
-        <div class="post-list">
-          <% @posts.each do |post| %>
-              <div class="each-post">
-                <div class="text">
-                  <h3><%= link_to post.title, post_path(post) %></h3>
-                  <p><%= post.full_address %></p>
-                  <p>$<%= post.price %></p>
-                  <% if post.comments.size > 0 %>
-                  <p>Rating: <%= post.average_rating %>/5.0 (<%= post.comments.count %>)</p>
-                  <% else %>
-                  <p>No rating</p>
-                  <% end %>
-                  <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
-                </div>
-                <div class="post-image">
-                  <%= image_tag post.image.small.url%>
-                </div>
-              </div>
-              <hr>
-          <% end %>
-        </div>
-      </div>
-
-
-</div> -->

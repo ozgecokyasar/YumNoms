@@ -36,7 +36,7 @@ form .btn {
 
 #map {
   height: 300px;
-  width: 100%;
+  width: 80%;
 }
 
 .map-row {
@@ -124,6 +124,15 @@ form .btn {
   position: relative;
 }
 
+.nearby-show {
+
+  height: 180px;
+  width: 300px;
+  background-size: cover;
+  background-clip: content-box;
+  position: relative;
+}
+
 
 .overlay-text {
   position: absolute;
@@ -178,4 +187,18 @@ form .btn {
   padding: 20px 0 20px 60px;
   margin: auto;
   border-radius: 20px;
+}
+
+footer {
+  height: 200px;
+  width: 100%;
+  background-color: #FF1C36;
+  margin-top: 20px;
+}
+
+a .social {
+  font-size: 40px;
+  padding: 30px;
+  float: left;
+  color: white;
 }

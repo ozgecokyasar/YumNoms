@@ -1,40 +1,40 @@
-<div class="container container-fluid">
-<div class="show">
-
-  <div class="row">
-    <h3 style="color: #FF1C36; margin: 40px;"><%= @user.first_name %>'s Favourite YumNoms</h3>
-      <% if current_user.favourites.length < 1 %>
-        <p>You have no favourites</p>
-        <% else %>
-        <% current_user.favourites.each do |favourite| %>
-        <div class="col-xs-6 col-sm-4 col-lg-2 col-md-2 user-show">
-          <%= image_tag favourite.post.image.small.url %>
-                <p><%= link_to favourite.post.title, favourite.post %></p>
-                <p><%= favourite.post.body %></p>
-                <p><%= favourite.post.price %></p>
-        </div>
-      <% end %>
-      <hr>
-      <% end %>
-  </div>
 
 
-  <div class="row">
-    <h3 style="color: #FF1C36; margin: 40px;">Your YumNom posts</h3>
-    <% if current_user.posts.length < 1 %>
-    <p> You have no posts </p>
-    <p><%= link_to 'create new post', new_post_path %></p>
+  <div class="row searched-posts">
+    <h1 style="color: #FF1C36; margin: 40px;"><%= @user.first_name %>'s Favourite YumNoms</h1>
+    <% if current_user.favourites.length < 1 %>
+      <p>You have no favourites</p>
     <% else %>
-      <% current_user.posts.each do |post| %>
-        <div class="col-xs-6 col-sm-4 col-lg-2 user-show">
-          <%= image_tag post.image.small.url if post.image.present? %>
-          <p><%= link_to post.title, post_path(post) %></p>
+      <% current_user.favourites.each do |favourite|  %>
+      <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style="    style="background-image: url('<%= favourite.post.image.small.url %>');">
+        <div class="price" style="top: 0">
+            <p style="color: white; font-size: 20px">$<%= favourite.post.price %></p>
         </div>
-      <% end %>
-      <hr>
+          <div class="title" style="bottom: 0">
+            <p><%= link_to favourite.post.title, favourite.post, class: 'title-text' %></p>
+          </div>
+      </div>
     <% end %>
+  <% end %>
   </div>
 
 
-</div>
-</div>
+
+  <div class="row searched-posts">
+    <h1 style="color: #FF1C36; margin: 40px;">Your YumNom Posts</h1>
+    <% if current_user.posts.length < 1 %>
+      <p>You Have No Posts</p>
+    <% else %>
+      <% current_user.posts.each do |post|  %>
+      <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style="    style="background-image: url('<%= post.image.small.url %>');">
+        <div class="price" style="top: 0">
+            <p style="color: white; font-size: 20px">$<%= post.price %></p>
+        </div>
+
+          <div class="title" style="bottom: 0">
+            <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
+          </div>
+      </div>
+    <% end %>
+  <% end %>
+  </div>

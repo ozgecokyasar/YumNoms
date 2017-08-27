@@ -7,23 +7,18 @@
           <%= image_tag (@post.image.medium.url) %>
       </div>
 
-      <div class="column2 col-lg-4">
-        <div>
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">View on Map</button>
-          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
-        </div>
-
-        <h2><%= @post.title %></h2>
+      <div class="col-lg-4">
+        <% if user_signed_in? && can?(:manage, @post) %>
+        <%= link_to 'EDIT', edit_post_path(@post) %>
+        <%= link_to 'DELETE', post_path(@post), method: :delete %>
+        <% end %>
+        <h1><%= @post.title %></h1>
         <p><strong>Price:</strong> $<%= @post.price %></p>
         <p><strong>Description: </strong><%= @post.body %></p>
         <p><strong>Address:</strong> <%= @post.full_address %></p>
         <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
         <p><strong>Category:</strong> <%= @post.category.name %></p>
         <p><strong>Posted by: </strong><%=link_to @post.user.full_name, user_path(@user)%></p>
-        <% if user_signed_in? && can?(:manage, @post) %>
-        <%= link_to 'EDIT', edit_post_path(@post) %>
-        <%= link_to 'DELETE', post_path(@post), method: :delete %>
-        <% end %>
         <div class="tags">
           <% if @post.tags.present? %>
           <p><strong>Tags:</strong><% @tags.each do |prod| %>
@@ -39,10 +34,16 @@
             <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
           <% end %>
           <%= pluralize @post.favourites.count, 'favourite' %>
-        </div>
+          <br />
+          <br />
+          <div>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">View on Map</button>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
+          </div>
+      </div>
       </div>
 
-      <div class="column3 col-lg-4">
+      <div class="col-lg-4">
         <% if @comments.present? %>
         <h2>Reviews:</h2>
         <div class="FixedHeightContainer">
@@ -50,7 +51,7 @@
                 <div>
                   <p><%= comment.body %></p>
                   <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
-                  <p><strong>Review By: </strong> <%= comment.user&.first_name %></p>
+                  <p><strong>Review Left By: </strong> <%= comment.user&.first_name %> <strong>On </strong><%= comment.created_at.strftime("%F") %></p>
                   <% if user_signed_in? && can?(:destroy, comment) %>
                     <p><%= link_to 'Delete Comment', post_comment_path(@post, comment),
                            method: :delete, data: { confirm: 'Are you sure?' }  %>
@@ -60,32 +61,37 @@
                 </div>
             <% end %>
             <% else %>
-            <h2>There are no reviews for this YumNom</h2>
+            <p style="margin: autp">There are no reviews for this YumNom</p>
             <% end %>
-          </div>
-        </div>
-
       </div>
+      </div>
+
     </div>
+
+
+
+    <div class="row nearby-posts">
+      <% if @post.nearbys.present? %>
+      <h3 style="margin-left: 30px;">Nearby YumNoms</h3>
+      <br>
+      <% @post.nearbys(2).each do |nearby_post| %>
+        <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4 nearby-show style="    style="background-image: url('<%= nearby_post.image.small.url %>');">
+          <div class="price" style="top: 0">
+              <p style="color: white; font-size: 20px">$<%= nearby_post.price %></p>
+          </div>
+
+            <div class="title" style="bottom: 0">
+              <p style="color: white;"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %> (<%= nearby_post.distance.round(5) %> miles)</p>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+
+
+
   </div>
-
-
-
-
-
-<div class="row" style="margin: auto">
-  <% if @post.nearbys.present? %>
-    <h3>Nearby Places</h3>
-    <% @post.nearbys(2).each do |nearby_post| %>
-    <div class="col-xs-6 col-sm-4 col-lg-2">
-      <%= image_tag nearby_post.image.small.url %>
-      <p>
-      <%= link_to nearby_post.title, nearby_post %> (<%= nearby_post.distance.round(5) %> miles)
-    </p>
-    </div>
-  <% end %>
-  <hr>
-  <% end %>
 </div>
 
 
@@ -94,7 +100,7 @@
   <div class="modal fade" id="myModal4" role="dialog">
       <div class="modal-dialog">
 
-        <!-- Modal content-->
+         Modal content
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -126,8 +132,8 @@
     <div class="modal fade" id="myModal6" role="dialog">
         <div class="modal-dialog">
 
-          <!-- Modal content-->
-          <div class="modal-content">
+          Modal content
+         <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
