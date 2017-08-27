@@ -2,12 +2,12 @@
 <div class="show">
 
   <div class="row">
-    <h3><%= @user.first_name %>'s Favourite YumNoms</h3>
+    <h3 style="color: #FF1C36; margin: 40px;"><%= @user.first_name %>'s Favourite YumNoms</h3>
       <% if current_user.favourites.length < 1 %>
         <p>You have no favourites</p>
         <% else %>
         <% current_user.favourites.each do |favourite| %>
-        <div class="col-xs-6 col-sm-4 col-lg-2 user-show">
+        <div class="col-xs-6 col-sm-4 col-lg-2 col-md-2 user-show">
           <%= image_tag favourite.post.image.small.url %>
                 <p><%= link_to favourite.post.title, favourite.post %></p>
                 <p><%= favourite.post.body %></p>
@@ -19,8 +19,8 @@
   </div>
 
 
-    <div class="row">
-    <h3>Your YumNom posts</h3>
+  <div class="row">
+    <h3 style="color: #FF1C36; margin: 40px;">Your YumNom posts</h3>
     <% if current_user.posts.length < 1 %>
     <p> You have no posts </p>
     <p><%= link_to 'create new post', new_post_path %></p>
@@ -33,8 +33,8 @@
       <% end %>
       <hr>
     <% end %>
+  </div>
 
 
-</div>
 </div>
 </div>

@@ -73,6 +73,22 @@ form .btn {
   flex: 1;
 }
 
+.price {
+  background: rgba(0, 0, 0, 0.7);
+  padding-left: 20px;
+}
+
+.title {
+  background: rgba(0, 0, 0, 0.7);
+  padding-left: 20px;
+  bottom: 0;
+}
+
+.title-text {
+  color: white;
+  font-size: 25px;
+}
+
 .banner {
   background-image:    linear-gradient(
       rgba(0, 0, 0, 0.3),
@@ -84,13 +100,35 @@ form .btn {
   position: relative;
 }
 
+.searched-posts {
+  margin: auto;
+  background-size: cover;
+  background-clip: content-box;
+  position: relative;
+}
+
+.user-show {
+
+  width: 300px;
+  background-size: cover;
+  background-clip: content-box;
+  position: relative;
+}
+
+.post-show {
+  margin: 10px;
+  height: 180px;
+  width: 400px;
+  background-size: cover;
+  background-clip: content-box;
+  position: relative;
+}
+
+
 .overlay-text {
   position: absolute;
 }
 
-.searched-posts {
-  margin: 20px 40px 20px 40px;
-}
 
 .navbar {
   background-color: white;
@@ -140,8 +178,4 @@ form .btn {
   padding: 20px 0 20px 60px;
   margin: auto;
   border-radius: 20px;
-}
-
-.user-show {
-  margin: 10px;
 }

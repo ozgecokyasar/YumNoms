@@ -37,17 +37,22 @@
 
   <div class="row searched-posts">
     <% @posts.each do |post| %>
-    <div class="col-xs-6 col-sm-4 col-lg-2 user-show">
-      <%= image_tag post.image.small.url %>
-        <p><%= link_to post.title, post_path(post) %></p>
+    <div class="col-xs-6 col-sm-4 col-lg-3 col-md-3 post-show style=" style="background-image: url('<%= post.image.small.url %>');">
+      <div class="price" style="top: 0">
+          <p style="color: white; font-size: 20px">$<%= post.price %></p>
+      </div>
+
         <p><%= post.full_address %></p>
-        <p><%= post.price %></p>
       <% if post.comments.size > 0 %>
         <p>Rating: <%= post.average_rating %>/5.0 (<%= post.comments.count %>)</p>
       <% else %>
-        <p>No rating</p>
+        <p>No ratings</p>
       <% end %>
         <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
+
+        <div class="title" style="bottom: 0">
+          <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
+        </div>
     </div>
   <% end %>
   </div>
