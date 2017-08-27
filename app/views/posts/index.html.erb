@@ -1,7 +1,11 @@
+<div class="content">
+  <div class="row">
 
-<div class="container-fluid">
-  <div class="container row " >
-    <div class="show col-lg-12 col-xs-12 banner">
+    <div class="banner col-lg-12 col-xs-12">
+
+    </div>
+
+    <div class="overlay-text col-lg-12 col-xs-12">
       <form class="form">
         <div class="form-row">
           <%= form_tag posts_path, :method => :get do %>
@@ -9,24 +13,50 @@
           <%= submit_tag "Search Near", :name => nil, class: 'btn-primary btn find-deals ' %>
           <% end %>
         </div>
-        <div>
-        </div>
       </form>
+    </div>
 
-      <div class="col-lg-7 col-xs-12">
-        <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
-        </div>
+  </div>
+
+
+  <div class="row map-row">
+    <div class="col-lg-12 col-xs-12">
+      <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
       </div>
+    </div>
+    <script>
+    const handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @locations %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      $("input#search").geocomplete();
+    });
+    </script>
+  </div>
 
-      <script>
-      const handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(<%= raw @locations %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        $("input#search").geocomplete();
-      });
-      </script>
+  <div class="row searched-posts">
+    <% @posts.each do |post| %>
+    <div class="col-xs-6 col-sm-4 col-lg-2 user-show">
+      <%= image_tag post.image.small.url %>
+        <p><%= link_to post.title, post_path(post) %></p>
+        <p><%= post.full_address %></p>
+        <p><%= post.price %></p>
+      <% if post.comments.size > 0 %>
+        <p>Rating: <%= post.average_rating %>/5.0 (<%= post.comments.count %>)</p>
+      <% else %>
+        <p>No rating</p>
+      <% end %>
+        <p>Availability: <%= post.start_time.strftime("%H:%M%P")%>-<%= post.end_time.strftime("%H:%M%P")%></p>
+    </div>
+  <% end %>
+  </div>
+
+
+</div>
+
+
+<!--
 
 
 
@@ -34,7 +64,6 @@
 
 
 
-      <div class="FixedHeightContainer col-lg-5 col-xs-12">
         <div class="post-list">
           <% @posts.each do |post| %>
               <div class="each-post">
@@ -59,4 +88,4 @@
       </div>
 
 
-</div>
+</div> -->

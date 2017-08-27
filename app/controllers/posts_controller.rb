@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)
     @favourite = @post.favourites.find_by(user: current_user)
     @tags = @post.tags
+    @user = @post.user
   end
 
   def new

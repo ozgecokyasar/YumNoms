@@ -2,7 +2,7 @@
 <div class="show">
 
   <div class="row">
-    <h3>Your Favourite YumNoms</h3>
+    <h3><%= @user.first_name %>'s Favourite YumNoms</h3>
       <% if current_user.favourites.length < 1 %>
         <p>You have no favourites</p>
         <% else %>
