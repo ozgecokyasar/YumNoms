@@ -1,9 +1,9 @@
 
 
 <div class="container">
-  <div class="show">
+  <div class="show col-lg-6">
     <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 10px;">
       <h1>Create a new post</h1>
       <%= simple_form_for @post do |f| %>
 
