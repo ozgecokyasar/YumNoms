@@ -79,9 +79,9 @@
 
     <div class="row nearby-posts">
       <% if @post.nearbys.present? %>
-      <h3 style="margin-left: 30px;">Nearby YumNoms</h3>
+      <h3 style="margin-left: 30px;">Other Yumnoms nearby <strong><%= @post.title%></strong></h3>
       <br>
-      <% @post.nearbys(2).each do |nearby_post| %>
+      <% @post.nearbys(1).limit(4).each do |nearby_post| %>
         <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4 nearby-show style="    style="background-image: url('<%= nearby_post.image.small.url %>');">
           <div class="price" style="top: 0">
               <p style="color: white; font-size: 20px">$<%= nearby_post.price %></p>

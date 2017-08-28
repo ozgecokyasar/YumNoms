@@ -20,3 +20,4 @@
 //= require geocomplete
 //= require materialize
 //= require_tree .
+//= require filterrific/filterrific-jquery

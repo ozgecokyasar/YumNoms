@@ -24,7 +24,8 @@ mount_uploader :image, ImageUploader
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address? }
 
-  
+
+
   def self.search(search)
     if search
       where("address ILIKE ? OR city ILIKE ? OR country ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
@@ -55,6 +56,43 @@ mount_uploader :image, ImageUploader
     end
 end
 
+
+filterrific(
+  default_filter_params: { sorted_by: 'created_at_desc' },
+  available_filters: [
+    :sorted_by,
+    :search_query,
+    :category_id
+  ]
+)
+
+# ActiveRecord association declarations
+
+# Scope definitions. We implement all Filterrific filters through ActiveRecord
+# scopes. In this example we omit the implementation of the scopes for brevity.
+# Please see 'Scope patterns' for scope implementation details.
+scope :search_query, lambda { |query|
+
+}
+scope :sorted_by, lambda { |sort_key|
+
+}
+scope :with_country_id, lambda { |country_ids|
+
+}
+scope :with_created_at_gte, lambda { |ref_date|
+
+}
+
+# This method provides select options for the `sorted_by` filter select input.
+# It is called in the controller as part of `initialize_filterrific`.
+def self.options_for_sorted_by
+  [
+    ['Price', 'price_asc'],
+    ['Category', 'category_name_asc']
+
+  ]
+end
 
 
 

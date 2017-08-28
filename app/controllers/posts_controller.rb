@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :destroy, :show, :update]
   before_action :authenticate_user!, except: [:index, :show]
 
+
+
   def index
     visitor_lat = 51.5074
     visitor_long = 0.1278
@@ -14,8 +16,9 @@ class PostsController < ApplicationController
   #     location_info = request.location
   #     @posts = Post.near([location_info.latitude, location_info.longitude], 10)
     end
-
+    
   end
+
 
   def show
     @post = Post.find(params[:id])

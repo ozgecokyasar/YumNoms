@@ -1,4 +1,6 @@
 
+
+
 <div class="content">
   <div class="row banner-row">
 
@@ -8,6 +10,7 @@
 
     <div class="overlay-text col-lg-12 col-xs-12">
       <form class="form">
+        <h1 style="margin-top: 50px; margin-left: 50px; color: white;">Find great lunchtime specials near you.</h1>
         <div class="form-row">
           <%= form_tag posts_path, :method => :get do %>
           <%= text_field_tag :search, params[:search], class: 'search' %>
