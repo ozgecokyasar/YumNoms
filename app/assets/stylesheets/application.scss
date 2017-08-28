@@ -33,6 +33,10 @@ form .btn {
   border: #FF1C36;
 }
 
+form .btn:hover {
+  background-color: #C62842;
+}
+
 
 #map {
   height: 300px;
@@ -80,23 +84,39 @@ form .btn {
 .search {
   // flex: 1;
   width: 60%;
-
 }
 
+
+
 .price {
-  background: rgba(0, 0, 0, 0.7);
+  background: #FF1C36;
   padding-left: 20px;
+  width: 70px;
+  top: 0;
 }
 
 .title {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   padding-left: 20px;
   bottom: 0;
+
+}
+
+.btn-inf {
+  background-color: grey;
+  border: none;
+
+}
+
+.title-text:hover {
+  color: #FF1C36;
+  text-decoration: none;
 }
 
 .title-text {
   color: white;
   font-size: 25px;
+    text-decoration: none;
 }
 
 .banner {
@@ -139,6 +159,16 @@ form .btn {
 
   height: 180px;
   width: 300px;
+  background-size: cover;
+  background-clip: content-box;
+  position: relative;
+}
+
+.user-posts {
+
+  height: 180px;
+  width: 300px;
+  margin: auto;
   background-size: cover;
   background-clip: content-box;
   position: relative;
@@ -204,7 +234,7 @@ z-index: 20;
 footer {
   height: 200px;
   width: 100%;
-  background-color: #FF1C36;
+  background-color: grey;
   margin-top: 20px;
 }
 

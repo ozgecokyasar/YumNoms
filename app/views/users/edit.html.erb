@@ -1,25 +1,30 @@
 
 <div class="container" >
   <div class="show">
-    <div style="margin-top: 100px;">
-      <%= simple_form_for @user do |f| %>
-      <h4>Edit your details</h4>
-        <%= f.input :first_name %>
-        <%= f.input  :last_name %>
-        <%= f.input :email %>
-      <%= f.button :submit,  class: 'btn-primary btn'  %>
-      <% end %>
-      <br>
-      <br>
-      <%= simple_form_for @user do |f| %>
-        <h4>Change password</h4>
-        <%= f.input :current_password%>
-        <%= f.input :password, placeholder: "New password (optional)" %>
-        <%= f.input :password_confirmation, placeholder: "Confirm new password" %>
+    <div class="row">
+
+      <div style="margin-top: 30px;" class="col-lg-6 col-sm-12">
+        <%= simple_form_for @user do |f| %>
+        <h4>Edit your details</h4>
+        <hr>
+          <%= f.input :first_name %>
+          <%= f.input  :last_name %>
+          <%= f.input :email %>
         <%= f.button :submit,  class: 'btn-primary btn'  %>
-      <% end %>
+        <% end %>
+      </div>
+
+      <div style="margin-top: 30px;" class="col-lg-6 col-sm-12">
+        <%= simple_form_for @user do |f| %>
+          <h4>Change password</h4>
+          <hr>
+          <%= f.input :current_password%>
+          <%= f.input :password, placeholder: "New password (optional)" %>
+          <%= f.input :password_confirmation, placeholder: "Confirm new password" %>
+          <%= f.button :submit,  class: 'btn-primary btn'  %>
+        <% end %>
+      </div>
+
     </div>
-
-
   </div>
 </div>

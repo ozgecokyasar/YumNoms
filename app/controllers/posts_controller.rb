@@ -3,10 +3,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    visitor_lat = request.location.latitude
-    visitor_long = request.location.longitude
+    visitor_lat = 51.5074
+    visitor_long = 0.1278
 
-    @posts = Post.near([visitor_lat, visitor_long], 100)
+    @posts = Post.near([visitor_lat, visitor_long], 50)
 
     if params[:search].present?
     @posts = Post.near(params[:search])
