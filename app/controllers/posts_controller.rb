@@ -3,15 +3,18 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.all
-    if params[:search].nil?
-      @posts = Post.where.not(latitude: nil, longitude: nil)
-    else
-      @search = params[:search].split(',').first
-      @posts = Post.search(@search).where.not(latitude: nil, longitude: nil).order("created_at DESC")
+    visitor_lat = request.location.latitude
+    visitor_long = request.location.longitude
+
+    @posts = Post.near([visitor_lat, visitor_long], 100)
+
+    if params[:search].present?
+    @posts = Post.near(params[:search])
+  #   else
+  #     location_info = request.location
+  #     @posts = Post.near([location_info.latitude, location_info.longitude], 10)
     end
 
-    @locations = locations_json(@posts)
   end
 
   def show

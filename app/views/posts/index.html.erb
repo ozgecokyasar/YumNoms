@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="row">
+  <div class="row banner-row">
 
     <div class="banner col-lg-12 col-xs-12">
 
@@ -21,7 +21,7 @@
 
   <div class="row map-row">
     <div class="col-lg-12 col-xs-12">
-      <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
+      <div id="map" style="visibility: hidden; height: 0px; width: 0px;">
       </div>
     </div>
     <script>
@@ -32,6 +32,16 @@
       handler.fitMapToBounds();
       $("input#search").geocomplete();
     });
+
+    window.onload = function() {
+      var startPos;
+      var geoSuccess = function(position) {
+        startPos = position;
+        document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+        document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
+};
     </script>
   </div>
 

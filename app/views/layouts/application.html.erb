@@ -46,9 +46,12 @@
               <li><%= link_to "Account Settings", edit_user_path(current_user)%></li>
 
             <% else %>
-              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Sign Up</button>
-              <%= link_to 'Sign in with Twitter', sign_in_with_twitter_path %>
-              <li><%= link_to "Log In", new_session_path, :class => "login btn "%></li>
+            <div class="buttons">
+              <%= request.location.country %>
+            <%= link_to "Log In", new_session_path, style: "text-decoration: none; color: white; margin-right: 25px; font-size: 15px;"%>
+                <p type="button" style="margin-right: 18px; font-size: 15px; background-color: rgba(255,255,255,00); border: white thin solid;" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">Sign Up</p>
+            </div>
+
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -62,7 +65,8 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Sign Up!</h4>
+              <h4 class="modal-title">Sign Up or <%= link_to 'Sign In With Twitter', sign_in_with_twitter_path %></h4>
+
             </div>
             <div class="modal-body form-group">
               <%= simple_form_for User.new do |f| %>

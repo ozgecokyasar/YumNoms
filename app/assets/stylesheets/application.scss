@@ -43,6 +43,13 @@ form .btn {
     margin: 20px 40px 20px 40px;
 }
 
+.buttons {
+  margin-top: 15px;
+
+}
+
+
+
 .FixedHeightContainer
 {
   height: 400px;
@@ -67,10 +74,13 @@ form .btn {
 .form-row {
     display: flex;
     margin: 200px 50px 20px 50px;
+
 }
 
 .search {
-  flex: 1;
+  // flex: 1;
+  width: 60%;
+
 }
 
 .price {
@@ -94,10 +104,11 @@ form .btn {
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ), url('stock.jpg');
-  height: 400px;
+  height: 500px;
   background-size: cover;
   background-clip: content-box;
   position: relative;
+  margin-top: -80px;
 }
 
 .searched-posts {
@@ -140,8 +151,9 @@ form .btn {
 
 
 .navbar {
-  background-color: white;
+z-index: 20;
   border: none;
+  background-color: rgba(255, 255, 255, 0.0)
 
 }
 

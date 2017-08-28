@@ -24,6 +24,7 @@ mount_uploader :image, ImageUploader
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address? }
 
+  
   def self.search(search)
     if search
       where("address ILIKE ? OR city ILIKE ? OR country ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
