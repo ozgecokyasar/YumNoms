@@ -56,6 +56,8 @@ mount_uploader :image, ImageUploader
     end
 end
 
+before_validation :titleize_title
+
 
 filterrific(
   default_filter_params: { sorted_by: 'created_at_desc' },
@@ -94,6 +96,9 @@ def self.options_for_sorted_by
   ]
 end
 
+def titleize_title
+    self.title = title.titleize
+  end
 
 
 end

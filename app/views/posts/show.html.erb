@@ -34,13 +34,16 @@
            <% end %>
         </div>
         <div class="faves">
+          <% if user_signed_in? && can?(:favourite, @post) %>
           <% favourite = @post.favourites.find_by(user: current_user) %>
           <% if favourite.present?%>
             <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
           <% else %>
             <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
           <% end %>
+          <% end %>
           <%= pluralize @post.favourites.count, 'favourite' %>
+
           <br />
           <br />
           <div>
@@ -53,7 +56,7 @@
       <div class="col-lg-4">
         <% if @comments.present? %>
         <h2>Reviews:</h2>
-        <div class="FixedHeightContainer">
+        <div class="FixedHeightContainer comment-list">
             <% @comments.each do |comment| %>
                 <div>
                   <p><%= comment.body %></p>

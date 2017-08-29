@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823191827) do
+ActiveRecord::Schema.define(version: 20170829214415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20170823191827) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favourites_on_post_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -90,6 +99,8 @@ ActiveRecord::Schema.define(version: 20170823191827) do
     t.string "oauth_token"
     t.string "oauth_secret"
     t.text "oauth_raw_data"
+    t.string "api_key"
+    t.index ["api_key"], name: "index_users_on_api_key"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
   end
@@ -98,6 +109,8 @@ ActiveRecord::Schema.define(version: 20170823191827) do
   add_foreign_key "comments", "users"
   add_foreign_key "favourites", "posts"
   add_foreign_key "favourites", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "posts"

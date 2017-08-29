@@ -11,10 +11,11 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: VALID_EMAIL_REGEX, unless: :from_omniauth?
 
   validates :first_name, :last_name, presence: true
-
+  before_create :generate_api_key
 
 serialize :oauth_raw_data
 
+  before_validation :titleize_name
 
   def self.create_from_omniauth(omniauth_data)
     full_name = omniauth_data["info"]["name"].split
@@ -53,4 +54,7 @@ serialize :oauth_raw_data
     "#{first_name} #{last_name}"
   end
 
+  def titleize_name
+      self.name = name.titleize 
+    end
 end

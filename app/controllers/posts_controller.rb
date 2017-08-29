@@ -10,13 +10,19 @@ class PostsController < ApplicationController
     visitor_lat = 49.2803221
     visitor_long = -123.112195
 
-    @posts = Post.near([visitor_lat, visitor_long], 20)
+    @posts = Post.near([visitor_lat, visitor_long], 2)
 
     if params[:search].present?
     @posts = Post.near(params[:search])
   #   else
   #     location_info = request.location
   #     @posts = Post.near([location_info.latitude, location_info.longitude], 10)
+    end
+
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @posts }
+      format.xml { render xml: @posts}
     end
 
   end
