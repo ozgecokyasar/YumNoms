@@ -5,10 +5,12 @@ class PostsController < ApplicationController
 
 
   def index
-    visitor_lat = 51.5074
-    visitor_long = 0.1278
+    #visitor_lat = request.location.latitude
+    #visitor_long = request.latitude.longitude
+    visitor_lat = 49.2803221
+    visitor_long = -123.112195
 
-    @posts = Post.near([visitor_lat, visitor_long], 50)
+    @posts = Post.near([visitor_lat, visitor_long], 20)
 
     if params[:search].present?
     @posts = Post.near(params[:search])
@@ -16,7 +18,7 @@ class PostsController < ApplicationController
   #     location_info = request.location
   #     @posts = Post.near([location_info.latitude, location_info.longitude], 10)
     end
-    
+
   end
 
 

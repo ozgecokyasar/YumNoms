@@ -1,3 +1,24 @@
+<div class="row searched-posts">
+  <h1 style="color: grey; margin: 20px;"><%= @user.first_name %>'sYumNom Posts</h1>
+  <hr>
+  <% if @user.posts.length < 1 %>
+    <p><%= @user.first_name %>'s</p>
+  <% else %>
+    <% @user.posts.each do |post|  %>
+    <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style=" style="margin-left: 10px; background-image: url('<%= post.image.small.url %>');">
+      <div class="price" style="top: 0">
+          <p style="color: white; font-size: 20px">$<%= post.price %></p>
+      </div>
+      <br>
+      <br>
+      <br>
+        <div class="title" style="bottom: 0">
+          <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
+        </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
 
 
   <div class="row searched-posts">
@@ -16,30 +37,6 @@
         <br>
           <div class="title" style="bottom: 0">
             <p><%= link_to favourite.post.title, favourite.post, class: 'title-text' %></p>
-          </div>
-      </div>
-    <% end %>
-  <% end %>
-  </div>
-
-
-
-  <div class="row searched-posts">
-    <h1 style="color: grey; margin: 20px;"><%= @user.first_name %>'sYumNom Posts</h1>
-    <hr>
-    <% if @user.posts.length < 1 %>
-      <p><%= @user.first_name %>'s</p>
-    <% else %>
-      <% @user.posts.each do |post|  %>
-      <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style=" style="margin-left: 10px; background-image: url('<%= post.image.small.url %>');">
-        <div class="price" style="top: 0">
-            <p style="color: white; font-size: 20px">$<%= post.price %></p>
-        </div>
-        <br>
-        <br>
-        <br>
-          <div class="title" style="bottom: 0">
-            <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
           </div>
       </div>
     <% end %>

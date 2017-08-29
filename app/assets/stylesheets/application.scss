@@ -71,7 +71,7 @@ form .btn:hover {
 }
 
 .FixedHeightContainer::-webkit-scrollbar-thumb {
-  background-color: pink;
+  background-color: lightgrey;
   outline: 1px solid slategrey;
 }
 
@@ -136,6 +136,7 @@ form .btn:hover {
   background-size: cover;
   background-clip: content-box;
   position: relative;
+
 }
 
 .user-show {
