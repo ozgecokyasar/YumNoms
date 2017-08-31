@@ -21,7 +21,7 @@
         <p>No ratings yet!</p>
 
         <% end %>
-        <p><strong>Description: </strong><%= @post.body %></p>
+              <p><strong>Description: </strong><%= @post.body %></p>
         <p><strong>Address:</strong> <%= @post.full_address %></p>
         <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
         <p><strong>Category:</strong> <%= @post.category.name %></p>
@@ -80,7 +80,7 @@
 
 
 
-    <div class="row nearby-posts" style="margin-left: 40px;">
+    <div class="row nearby-posts" style="margin-left: 10px;">
       <% if @post.nearbys.present? %>
       <h3 style="margin-left: 30px;"> Yumnoms near <strong><%= @post.title%></strong></h3>
       <br>

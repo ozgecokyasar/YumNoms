@@ -18,6 +18,7 @@ gem 'omniauth-twitter'
 gem 'gmaps4rails'
 gem 'geocomplete_rails'
 gem 'underscore-rails'
+gem 'jwt'
  gem 'filterrific'
  gem 'country_select'
 # Use postgresql as the database for Active Record

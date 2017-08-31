@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
 serialize :oauth_raw_data
 
-  before_validation :titleize_name
+
 
   def self.create_from_omniauth(omniauth_data)
     full_name = omniauth_data["info"]["name"].split
@@ -54,7 +54,17 @@ serialize :oauth_raw_data
     "#{first_name} #{last_name}"
   end
 
-  def titleize_name
-      self.name = name.titleize 
-    end
+  def generate_api_key
+  # SecureRandom.hex(32) will generate a string of length 32 containing
+  # random hex characters.
+  loop do
+    self.api_key = SecureRandom.hex(32)
+    # In the eventuality that we accidently create an API key
+    # that already exists in our db, we're going to loop and regenerate it
+    # until that is no longer the case.
+    break unless User.exists?(api_key: api_key)
+  end
+end
+
+
 end
