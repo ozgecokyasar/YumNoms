@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def index
     visitor_lat = request.location.latitude
-    visitor_long = request.latitude.longitude
+    visitor_long = request.location.longitude
     # visitor_lat = 49.2803221
     # visitor_long = -123.112195
 
