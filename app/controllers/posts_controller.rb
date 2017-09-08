@@ -5,10 +5,10 @@ class PostsController < ApplicationController
 
 
   def index
-    #visitor_lat = request.location.latitude
-    #visitor_long = request.latitude.longitude
-    visitor_lat = 49.2803221
-    visitor_long = -123.112195
+    visitor_lat = request.location.latitude
+    visitor_long = request.latitude.longitude
+    # visitor_lat = 49.2803221
+    # visitor_long = -123.112195
 
     @posts = Post.near([visitor_lat, visitor_long], 2)
 
