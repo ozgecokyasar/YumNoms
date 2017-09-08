@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     # visitor_lat = 49.2803221
     # visitor_long = -123.112195
 
-    @posts = Post.near([visitor_lat, visitor_long], 2)
+    @posts = Post.near([visitor_lat, visitor_long], 3)
 
     if params[:search].present?
     @posts = Post.near(params[:search])
