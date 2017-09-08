@@ -1,5 +1,5 @@
 json.array! @posts do |post|
-  json.id post.id
+  json.unique_id post.id
   json.title post.title
   json.body post.body
   json.full_address post.full_address
