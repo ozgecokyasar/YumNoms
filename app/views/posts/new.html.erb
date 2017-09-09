@@ -20,10 +20,10 @@
         <%= f.collection_select :category_id, Category.all, :id, :name, class: "browser-default" %>
         <br />
         <br />
-       <div class="form-group">
+       <!-- <div class="form-group">
          <%= f.label :tag_list, "Tags, seperated by commas" %>
          <%= f.input_field :tag_list %>
-       </div>
+       </div> -->
        <%= f.input :image, class: 'btn btn-primary' %>
        <div>
         <%= f.button :submit,  class: 'btn-primary btn'  %>

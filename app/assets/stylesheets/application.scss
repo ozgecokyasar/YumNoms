@@ -77,13 +77,13 @@ form .btn:hover {
 
 .form-row {
     display: flex;
-    margin: 100px 50px 20px 50px;
+    margin: 100px 40px 20px 50px;
 
 }
 
 .search {
   // flex: 1;
-  width: 60%;
+  width: 100%;
 }
 
 
@@ -113,6 +113,10 @@ form .btn:hover {
   text-decoration: none;
 }
 
+li:hover {
+  color: #FF1C36;
+}
+
 .title-text {
   color: white;
   font-size: 25px;
@@ -124,11 +128,11 @@ form .btn:hover {
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ), url('stock.jpg');
-  height: 500px;
+  height: 700px;
   background-size: cover;
   background-clip: content-box;
   position: relative;
-  margin-top: -100px;
+  margin-top: -300px;
 }
 
 .searched-posts {
@@ -192,11 +196,21 @@ z-index: 20;
   font-size: 20px;
 }
 
-.find-deals {
-  padding: 10px 30px 10px 30px;
-  letter-spacing: 2px;
+.collapse .navbar-collapse {
+  background-color: red;
 }
 
+.find-deals {
+
+  letter-spacing: 2px;
+  width: 30%;
+}
+
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #3344ff;
+    color:#ffffff;
+  }
 .each-post {
   display: flex;
 }
