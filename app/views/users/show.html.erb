@@ -1,8 +1,10 @@
+<div style="margin: 0 20px 100px 20px;">
+
 <div class="row searched-posts">
   <h1 style="color: grey; margin: 20px;"><%= @user.first_name %>'sYumNom Posts</h1>
   <hr>
   <% if @user.posts.length < 1 %>
-    <p><%= @user.first_name %>'s</p>
+    <p style="margin-left: 40px;"><%= @user.first_name %>'s has no YumNom posts yet </p>
   <% else %>
     <% @user.posts.each do |post|  %>
     <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style=" style="margin-left: 10px; background-image: url('<%= post.image.small.url %>');">
@@ -42,3 +44,4 @@
     <% end %>
   <% end %>
   </div>
+</div>
