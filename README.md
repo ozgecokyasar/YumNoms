@@ -1,24 +1,40 @@
-# README
+# YumNoms
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+YumNoms is a platform on which users can share locations of restaurants/cafes that offer lunchtime specials at great deals!
+A JSON API has been implemented to this rails app.
+The app is now live:
+[YumNoms](http://yumnoms.herokuapp.com)
 
-Things you may want to cover:
+# Getting Started 
 
-* Ruby version
+Assuming you have the correct Rails version, you should be able to clone and use the files locally. 
+Follow the steps below:
 
-* System dependencies
+```
+$ git clone https://github.com/ozgecokyasar/myFinalProject.git
+$ cd myFinalProject
+$ bundle install
+$ rails db:create db:migrate
+$ rails server
 
-* Configuration
+```
+## Built With
 
-* Database creation
+* [Ruby on Rails](http://rubyonrails.org/) 
+* [PostgreSQL](https://www.postgresql.org/)
+* [Bootstrap](http://getbootstrap.com/)
+* [Google Maps API](https://developers.google.com/maps/)
+* [OAuth Twitter API](https://dev.twitter.com/oauth)
+* [JSON API](http://jsonapi.org/)
 
-* Database initialization
+## Versioning
 
-* How to run the test suite
+* Ruby Version: ruby 2.4.1p111
+* Rails Version: Rails 5.1.3
 
-* Services (job queues, cache servers, search engines, etc.)
+## License
 
-* Deployment instructions
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-* ...
+
+
