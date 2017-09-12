@@ -278,7 +278,7 @@ DEPENDENCIES
   materialize-sass
   mini_magick
   omniauth-twitter
-  pg (~> 0.18)
+  pg (~> 0.21)
   puma (~> 3.7)
   rails (~> 5.1.2)
   rails_12factor
@@ -294,4 +294,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.3
+   1.16.0.pre.2

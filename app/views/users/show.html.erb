@@ -6,21 +6,26 @@
   <% if @user.posts.length < 1 %>
     <p style="margin-left: 40px;"><%= @user.first_name %>'s has no YumNom posts yet </p>
   <% else %>
-    <% @user.posts.each do |post|  %>
-    <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style=" style="margin-left: 10px; background-image: url('<%= post.image.small.url %>');">
-      <div class="price" style="top: 0">
-          <p style="color: white; font-size: 20px">$<%= post.price %></p>
+  <div class="row searched-posts">
+    <% @user.posts.each do |post| %>
+
+    <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show" >
+      <div class="bg-image" style=" height: 200px; background-image: url('<%= post.image.small.url %>')" >
+
       </div>
-      <br>
-      <br>
-      <br>
-        <div class="title" style="bottom: 0">
-          <p><%= link_to post.title, post_path(post), class: 'title-text' %></p>
+        <p><%= link_to post.title, post_path(post), class: 'title-text', style: "text-decoration: none; color: grey;" %></p>
+
+        <div class="">
+            <p style="font-size: 20px; float: left; color: white; background: #FF1C36; padding: 7px;">$<%= post.price %></p>
         </div>
     </div>
   <% end %>
+  </div>
 <% end %>
 </div>
+
+
+
 
 
   <div class="row searched-posts">
@@ -29,16 +34,17 @@
     <% if @user.favourites.length < 1 %>
       <p style="margin-left: 40px;"><%= @user.first_name %> has no favourites</p>
     <% else %>
-      <% @user.favourites.each do |favourite|  %>
-      <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show style=" style="margin-left: 10px; background-image: url('<%= favourite.post.image.small.url %>');">
-        <div class="price" style="top: 0">
-            <p style="color: white; font-size: 20px">$<%= favourite.post.price %></p>
+    <div class="row searched-posts">
+      <% @user.favourites.each do |favourite| %>
+
+      <div class="col-xs-6 col-sm-4 col-lg-2 col-md-3 post-show" >
+        <div class="bg-image" style=" height: 200px; background-image: url('<%= post.image.small.url %>')" >
+
         </div>
-        <br>
-        <br>
-        <br>
-          <div class="title" style="bottom: 0">
-            <p><%= link_to favourite.post.title, favourite.post, class: 'title-text' %></p>
+          <p><%= link_to favourite.post.title, post_path(post), class: 'title-text', style: "text-decoration: none; color: grey;" %></p>
+
+          <div class="">
+              <p style="font-size: 20px; float: left; color: white; background: #FF1C36; padding: 7px;">$<%= favourite.post.price %></p>
           </div>
       </div>
     <% end %>

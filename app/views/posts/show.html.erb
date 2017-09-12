@@ -87,14 +87,14 @@
       <% @post.nearbys(1).limit(4).each do |nearby_post| %>
         <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4 nearby-show style="    style="background-image: url('<%= nearby_post.image.small.url %>');">
           <div class="price" style="top: 0">
-              <p style="color: white; font-size: 20px">$<%= nearby_post.price %></p>
+              <p style="color: white; font-size: 20px;">$<%= nearby_post.price %></p>
           </div>
           <br>
           <br>
           <br>
 
             <div class="title" style="bottom: 0">
-              <p style="color: white;"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %> (<%= nearby_post.distance.round(5) %> miles)</p>
+              <p style="color: white;"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %> (<%= nearby_post.distance.round(5) %> miles from <%= @post.title%>)</p>
             </div>
         </div>
       <% end %>

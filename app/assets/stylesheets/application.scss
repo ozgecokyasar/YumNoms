@@ -88,12 +88,6 @@ form .btn:hover {
 
 
 
-.price {
-  background: #FF1C36;
-  padding-left: 20px;
-  width: 70px;
-  top: 0;
-}
 
 .title {
   background: rgba(0, 0, 0, 0.4);
@@ -118,7 +112,7 @@ li:hover {
 }
 
 .title-text {
-  color: white;
+
   font-size: 25px;
     text-decoration: none;
 }
@@ -151,13 +145,22 @@ li:hover {
   position: relative;
 }
 
+
+
 .post-show {
   margin: 10px;
-  height: 180px;
-  width: 400px;
+  height: 300px;
+  width: 370px;
   background-size: cover;
   background-clip: content-box;
   position: relative;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 3px
+}
+
+.bg-image {
+    background-repeat: no-repeat;
+      background-size: cover;
 }
 
 .nearby-show {
@@ -258,4 +261,71 @@ a .social {
   padding: 30px;
   float: left;
   color: white;
+}
+//
+// -----------------------------------
+
+.card {
+    display: block;
+    max-width: 50%;
+    min-height: 25em;
+    background-color: #fff;
+    margin: 0 auto;
+    transition: box-shadow .55s;
+    box-shadow:  0 4px 5px -2px rgba(0,0,0,.2),
+                -2px 0 5px -2px rgba(0,0,0,.2),
+                 2px 0 5px -2px rgba(0,0,0,.2);
+}
+.card>img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.card:hover {
+    transition: box-shadow .45s;
+    box-shadow: 0 10px 17px 0 rgba(0,0,0,.2),
+                0 7px 20px 0 rgba(0,0,0,.19);
+}
+.card, .fab {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    text-align: center;
+}
+.fab i {
+  padding: .5em;
+}
+
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+.answers .fab {
+    position: absolute;
+    top: -1em;
+    right: 1em;
+}
+.fab {
+    font-size: 25px;
+    line-height: 1;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    color: #555;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    background: #fff;
+}
+.fab:hover{
+  transition: box-shadow .45s;
+  box-shadow: 0 10px 17px 0 rgba(0,0,0,.2),
+              0 7px 20px 0 rgba(0,0,0,.19);
+}
+ .answers > div {
+    position: relative;
+    padding: 1em;
 }
