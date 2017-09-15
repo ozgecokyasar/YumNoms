@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   get "/auth/twitter", as: :sign_in_with_twitter
 get "/auth/:provider/callback", to: 'callbacks#index'
 
-namespace :api, defaults: {format: :json } do
+namespace :api, defaults: { format: :json } do
   namespace :v1 do
-    resources :posts, only: [:index, :show, :create]
-    resources :tokens, only: [:create]
+    # /api/v1/posts
+    resources :posts
+    resources :tokens
   end
 end
 
