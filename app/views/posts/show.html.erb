@@ -1,135 +1,86 @@
 
-
-<div class="posts-container" >
-  <div class="show">
-    <div class="row">
-
-      <div class="column1 col-lg-4">
-          <%= image_tag (@post.image.medium.url) %>
-      </div>
-
-      <div class="col-lg-4">
-        <% if user_signed_in? && can?(:manage, @post) %>
-        <%= link_to 'EDIT', edit_post_path(@post) %>
-        <%= link_to 'DELETE', post_path(@post), method: :delete %>
-        <% end %>
-        <h1><%= @post.title %></h1>
-        <p><strong>Price:</strong> $<%= @post.price %></p>
-        <% if  @post.comments.present? %>
-        <p><strong>Rating:</strong> <%= @post.average_rating %></p>
-        <% else %>
-        <p>No ratings yet!</p>
-
-        <% end %>
-              <p><strong>Description: </strong><%= @post.body %></p>
-        <p><strong>Address:</strong> <%= @post.full_address %></p>
-        <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
-        <p><strong>Category:</strong> <%= @post.category.name %></p>
-        <p><strong>Posted by: </strong><%=link_to @post.user.full_name, user_path(@user)%></p>
-        <div class="tags">
-          <% if @post.tags.present? %>
-          <p><strong>Tags:</strong><% @tags.each do |prod| %>
-             <%= link_to prod.name, tag_path(prod) %> |
-           <% end %></p>
-           <% end %>
-        </div>
-        <div class="faves">
-          <% if user_signed_in? && can?(:favourite, @post) %>
-          <% favourite = @post.favourites.find_by(user: current_user) %>
-          <% if favourite.present?%>
-            <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
-          <% else %>
-            <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
-          <% end %>
-          <% end %>
-          <%= pluralize @post.favourites.count, 'favourite' %>
-
-          <br />
-          <br />
-          <div>
-            <button type="button" class="btn-in btn  btn-lg" data-toggle="modal" data-target="#myModal6" style="color: white;">View on Map</button>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
-          </div>
-      </div>
-      </div>
-
-      <div class="col-lg-4">
-        <% if @comments.present? %>
-        <h2>Reviews:</h2>
-        <div class="FixedHeightContainer comment-list">
-            <% @comments.each do |comment| %>
-                <div>
-                  <p><%= comment.body %></p>
-                  <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
-                  <p><strong>Review Left By: </strong> <%= comment.user&.first_name %> <strong>On </strong><%= comment.created_at.strftime("%F") %></p>
-                  <% if user_signed_in? && can?(:destroy, comment) %>
-                    <p><%= link_to 'Delete Comment', post_comment_path(@post, comment),
-                           method: :delete, data: { confirm: 'Are you sure?' }  %>
-                    </p>
-                  <% end %>
-                  <hr>
-                </div>
-            <% end %>
-            <% else %>
-            <p style="margin: autp">There are no reviews for this YumNom</p>
-            <% end %>
-      </div>
-      </div>
-
+<div class="posts-container" style="text-align:center;">
+  <div class="row banner-row">
+    <div class="banner col-lg-12 col-xs-12" style="height: 500px;">
     </div>
+    <div class="overlay-text col-lg-12 col-xs-12">
+      <form class="form">
+        <h1 style="margin-top: 50px; margin-left: 50px; color: white; font-weight: bold;"><%= @post.title %></h1>
+        <h1><span class="label label-danger">$<%= @post.price %></span></h1>
+      </form>
+    </div>
+  </div>
 
+  <div class="row" style="margin: auto; margin: 30px">
+    <div class="col-lg-6">
+      <div class="bg-image" style="height: 350px; background-image: url('<%= @post.image.small.url %>')" >
+      </div>
+      <% if user_signed_in? && can?(:manage, @post) %>
+      <p><%= link_to 'EDIT', edit_post_path(@post) %> or <%= link_to 'DELETE', post_path(@post), method: :delete %></p>
+      <% end %>
+    </div>
+    <div class='col-lg-4'>
+      <p><strong>Description: </strong><%= @post.body %></p>
+      <p><strong>Address:</strong> <%= @post.full_address %></p>
+      <p><strong>Availability: </strong> <%= @post.start_time.strftime("%H:%M%P") %> - <%= @post.end_time.strftime("%H:%M%P") %></p>
+      <p><strong>Price:</strong> $<%= @post.price %></p>
+      <% if  @post.comments.present? %>
+      <p><strong>Rating:</strong> <%= @post.average_rating %></p>
+      <% else %>
+      <p>No ratings yet!</p>
 
-<!--
-    <div class="row nearby-posts" style="margin-left: 10px;">
-      <% if @post.nearbys.present? %>
-      <h3 style="margin-left: 30px;"> Yumnoms near <strong><%= @post.title%></strong></h3>
-      <br>
-      <% @post.nearbys(1).limit(4).each do |nearby_post| %>
-        <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4 nearby-show style="    style="background-image: url('<%= nearby_post.image.small.url %>');">
-          <div class="price" style="top: 0">
-              <p style="color: white; font-size: 20px;">$<%= nearby_post.price %></p>
-          </div>
-          <br>
-          <br>
-          <br>
+      <% end %>
 
-            <div class="title" style="bottom: 0">
-              <p style="color: white;"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %> (<%= nearby_post.distance.round(5) %> miles from <%= @post.title%>)</p>
+      <div class="row">
+
+        <div class="col-lg-12">
+        <% if user_signed_in? && can?(:favourite, @post) %>
+        <% favourite = @post.favourites.find_by(user: current_user) %>
+        <% if favourite.present?%>
+          <%= link_to fa_icon('heart lg'), post_favourite_path(@post, favourite), method: :delete %>
+        <% else %>
+          <%= link_to fa_icon('heart-o lg'), post_favourites_path(@post), method: :post %>
+        <% end %>
+        <% end %>
+        <%= pluralize @post.favourites.count, 'favourite' %>
+      </div>
+
+      <div class="col-lg-12">
+        <button type="button" class="btn-in btn  btn-md" data-toggle="modal" data-target="#myModal6" style="color: white;">View on Map</button>
+      </div>
+
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal4">Leave a Review</button>
+      </div>
+      <div class="col-lg-12">
+          <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal10">Reviews</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<div style="text-align: center;">
+   <div class="row nearby-posts" style="margin-left: 20px;">
+    <% if @post.nearbys.present? %>
+    <br>
+        <h3> Yumnoms near <strong><%= @post.title%></strong></h3>
+        <br>
+      <% @post.nearbys(1).limit(6).each do |nearby_post| %>
+        <div class="col-xs-12 col-sm-4 col-lg-2 col-md-3" style="padding-left: 100px;">
+          <div class="card" style="width: 20rem; height: 230px; max-height: 230px;">
+            <div class="bg-image" style="height: 140px; background-image: url('<%= nearby_post.image.small.url %>')" >
             </div>
+            <div class="card-block">
+              <h4 class="card-title"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %></h4>
+              <p class="card-text">$<%= nearby_post.price %></p>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>
-    </div> -->
-      <% if @post.nearbys.present? %>
-      <h3 style="margin-left: 30px;"> Yumnoms near <strong><%= @post.title%></strong></h3>
-      <br>
-    <% @post.nearbys(1).limit(4).each do |nearby_post| %>
-        <div class="col-xs-12 col-sm-4 col-lg-2 col-md-3" >
-      <div class="card" style="width: 20rem; height: 300px; max-height: 300px;">
-        <div class="bg-image" style="height: 140px; background-image: url('<%= post.image.small.url %>')" >
-
-        </div>
-    <div class="card-block">
-      <h4 class="card-title"><%= link_to nearby_post.title, nearby_post, class: 'title-text' %> (<%= nearby_post.distance.round(5) %> miles from <%= @post.title%>)</p>
-      <p class="card-text">$<%= nearby_post.price %></p>
     </div>
-  </div>
 </div>
-    <% end %>
-    <% end %>
 
-
-
-
-
-
-
-
-
-
-
-
-  </div>
 </div>
 
 
@@ -138,11 +89,10 @@
   <div class="modal fade" id="myModal4" role="dialog">
       <div class="modal-dialog">
 
-         Modal content
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Sign Up!</h4>
+            <h4 class="modal-title">Leave a review for <em> <%= @post.title %></em>!</h4>
           </div>
           <div class="modal-body form-group">
             <%= simple_form_for([@post, Comment.new]) do |f| %>
@@ -150,7 +100,7 @@
               <%= f.input :body %>
             </div>
             <div>
-              <p>What would you rate this YumNom out of 5?</p>
+              <p>What would you rate <em><%= @post.title %></em> out of 5?</p>
               <%= f.select :rating, [5, 4 ,3 ,2, 1], class: "browser-default" %>
             </div>
             <br>
@@ -210,3 +160,47 @@
 
         </div>
       </div>
+
+
+      <div class="modal fade" id="myModal10" role="dialog">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reviews for <em> <%= @post.title %></em>!</h4>
+              </div>
+              <div class="modal-body form-group">
+              <div class="row">
+                  <div class="col-lg-12" style="text: center;">
+                    <% if @comments.present? %>
+                    <h2>Reviews</h2>
+                    <hr>
+                    <div style="margin: auto;">
+                        <% @comments.each do |comment| %>
+                            <div>
+                              <p><%= comment.body %></p>
+                              <p><strong>Rating:</strong> <%= comment.rating %>/5</p>
+                              <p><strong>Review Left By: </strong> <%= comment.user&.first_name %> <strong>On </strong><%= comment.created_at.strftime("%F") %></p>
+                              <% if user_signed_in? && can?(:destroy, comment) %>
+                                <p><%= link_to 'Delete Comment', post_comment_path(@post, comment),
+                                       method: :delete, data: { confirm: 'Are you sure?' }  %>
+                                </p>
+                              <% end %>
+                              <hr>
+                            </div>
+                        <% end %>
+                        <% else %>
+                        <p>There are no reviews for this YumNom</p>
+                        <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+</div>

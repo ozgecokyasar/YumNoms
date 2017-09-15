@@ -25,7 +25,7 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 
 * {
-font-family: Helvetica;
+font-family: 'Open Sans', sans-serif;
 }
 
 form .btn {
@@ -122,7 +122,6 @@ li:hover {
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ), url('stock.jpg');
-  height: 700px;
   background-size: cover;
   background-clip: content-box;
   position: relative;
@@ -253,7 +252,6 @@ footer {
   height: 200px;
   width: 100%;
   background-color: #FF1C36;
-  margin-top: 20px;
 }
 
 a .social {

@@ -2,9 +2,9 @@
 
 
 <div class="content">
-  <div class="row banner-row">
+  <div class="row banner-row" >
 
-    <div class="banner col-lg-12 col-xs-12">
+    <div class="banner col-lg-12 col-xs-12" style="height: 700px;">
 
     </div>
 
@@ -54,8 +54,8 @@
   <div class="row searched-posts">
 
     <% @posts.each do |post| %>
-        <div class="col-xs-12 col-sm-4 col-lg-2 col-md-3" >
-      <div class="card" style="width: 20rem; height: 300px; max-height: 300px;">
+        <div class="col-xs-12 col-sm-4 col-lg-43 col-md-3" >
+      <div class="card" style="width: 20rem; height: 260px; width: 290px; max-height: 300px;">
         <div class="bg-image" style="height: 140px; background-image: url('<%= post.image.small.url %>')" >
 
         </div>
@@ -66,8 +66,4 @@
   </div>
 </div>
     <% end %>
-
-
-
-
 </div>

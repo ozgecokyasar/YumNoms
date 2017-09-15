@@ -1,10 +1,19 @@
+<div class="row banner-row">
+  <div class="banner col-lg-12 col-xs-12" style="height: 500px;">
+  </div>
+  <div class="overlay-text col-lg-12 col-xs-12">
+    <form class="form">
+      <h1 style="margin-top: 50px; margin-left: 100px; color: white; font-weight: bold;">Create a new YumNom</h1>
 
+    </form>
+  </div>
+</div>
 
 <div class="container">
+
   <div class="show col-lg-6">
     <h3 style="color: red"><%= @post.errors.full_messages.join('. ') %></h3>
     <div style="margin-top: 10px;">
-      <h1>Create a new post</h1>
       <%= simple_form_for @post do |f| %>
 
         <%= f.input :title %>
