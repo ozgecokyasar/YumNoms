@@ -51,19 +51,23 @@
 <div class="">
 
 </div>
+
   <div class="row searched-posts">
 
+  <div>
     <% @posts.each do |post| %>
-        <div class="col-xs-12 col-sm-4 col-lg-43 col-md-3" >
-      <div class="card" style="width: 20rem; height: 260px; width: 290px; max-height: 300px;">
-        <div class="bg-image" style="height: 140px; background-image: url('<%= post.image.small.url %>')" >
+        <div class="col-xs-12 col-sm-4 col-lg-2 col-md-3">
+          <div class="card" style="width: 20rem; height: 260px; max-height: 300px;">
+            <div class="bg-image" style="height: 140px; background-image: url('<%= post.image.small.url %>')" >
 
+            </div>
+            <div class="card-block">
+              <h4 class="card-title"><%= link_to post.title, post_path(post)%></h4><p><%= post.distance.round(2) %> miles</p>
+              <p class="card-text">$<%= post.price %></p>
+            </div>
+          </div>
         </div>
-    <div class="card-block">
-      <h4 class="card-title"><%= link_to post.title, post_path(post)%></h4><p><%= post.distance.round(2) %> miles</p>
-      <p class="card-text">$<%= post.price %></p>
-    </div>
-  </div>
-</div>
     <% end %>
+  </div>
+
 </div>
