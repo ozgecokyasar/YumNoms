@@ -11,8 +11,8 @@ Assuming you have the correct Rails version, you should be able to clone and use
 Follow the steps below:
 
 ```
-$ git clone https://github.com/ozgecokyasar/myFinalProject.git
-$ cd myFinalProject
+$ git clone https://github.com/ozgecokyasar/YumNoms.git
+$ cd YumNoms
 $ bundle install
 $ rails db:create db:migrate
 $ rails server
